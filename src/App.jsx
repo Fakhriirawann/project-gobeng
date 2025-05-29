@@ -9,8 +9,6 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 // Pages
 import Login from "./components/Login";
@@ -26,9 +24,9 @@ import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 
 // Shared Components
-import Header from "./components/Shared/Header";
+import Header from "./components/Shared/Header.jsx";
 import Footer from "./components/shared/Footer";
-import ScrollToTop from "./components/Shared/ScrollToTop.jsx";
+import ScrollToTop from "./components/shared/ScrollToTop";
 import LoadingScreen from "./components/shared/LoadingScreen";
 
 // Context
@@ -40,13 +38,6 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Initialize AOS animation library
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: "ease-in-out",
-    });
-
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -70,6 +61,8 @@ function App() {
             hideProgressBar={false}
             closeOnClick
             pauseOnHover
+            theme="colored"
+            className="z-50"
           />
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -152,11 +145,11 @@ function App() {
 // Layout wrapper for public pages
 const PublicLayout = ({ children }) => {
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Header />
       <main className="min-h-screen">{children}</main>
       <Footer />
-    </>
+    </div>
   );
 };
 

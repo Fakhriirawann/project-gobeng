@@ -3,8 +3,6 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { motion } from "framer-motion";
-import { FaEye, FaEyeSlash, FaLock, FaEnvelope } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -31,7 +29,7 @@ const Login = () => {
       } else if (user.role === "admin") {
         navigate("/admin-dashboard");
       } else {
-        navigate("/");
+        navigate("/user-dashboard");
       }
     } catch (error) {
       console.error("Login error:", error);
@@ -61,37 +59,29 @@ const Login = () => {
 
     setEmail(demoCredentials.email);
     setPassword(demoCredentials.password);
-
-    // Optional: auto-submit the form
-    // login(demoCredentials.email, demoCredentials.password)
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-orange-900 via-orange-800 to-orange-700 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+      {/* Background Elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-blue-900 opacity-80"></div>
+        <div className="absolute inset-0 bg-orange-900/80 dark:bg-gray-900/80"></div>
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute top-20 left-20 w-32 h-32 bg-yellow-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-orange-400/20 rounded-full blur-3xl"></div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 max-w-md w-full"
-      >
-        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8">
+      <div className="relative z-10 max-w-md w-full animate-fade-in">
+        <div className="bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 border border-white/20 dark:border-gray-700/50">
           {/* Logo */}
           <div className="text-center mb-8">
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="w-20 h-20 bg-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div className="relative">
+              <div className="w-20 h-20 bg-gradient-orange rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl animate-bounce-in">
                 <span className="text-white font-bold text-2xl">GB</span>
               </div>
-            </motion.div>
-            <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-400 mb-2">
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-pulse"></div>
+            </div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent mb-2">
               GoBeng
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
@@ -100,28 +90,41 @@ const Login = () => {
           </div>
 
           {/* Demo Accounts Info */}
-          <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 mb-6 text-sm">
-            <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-2">
+          <div className="bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/20 rounded-2xl p-4 mb-6 text-sm border border-orange-200/50 dark:border-orange-700/30">
+            <h3 className="font-semibold text-orange-600 dark:text-orange-400 mb-3 flex items-center">
+              <span className="mr-2">🎯</span>
               Demo Accounts:
             </h3>
-            <div className="space-y-2 text-blue-800 dark:text-blue-200">
+            <div className="space-y-2 text-orange-800 dark:text-orange-300">
               <button
                 onClick={() => handleDemoLogin("kasir")}
-                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                className="w-full text-left px-3 py-2 rounded-xl hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-all duration-200 border border-orange-200/50 dark:border-orange-700/30 group"
               >
-                Kasir: kasir@gobeng.com / kasir123
+                <span className="font-medium">Kasir:</span> kasir@gobeng.com /
+                kasir123
+                <span className="float-right opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  →
+                </span>
               </button>
               <button
                 onClick={() => handleDemoLogin("admin")}
-                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                className="w-full text-left px-3 py-2 rounded-xl hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-all duration-200 border border-orange-200/50 dark:border-orange-700/30 group"
               >
-                Admin: admin@gobeng.com / admin123
+                <span className="font-medium">Admin:</span> admin@gobeng.com /
+                admin123
+                <span className="float-right opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  →
+                </span>
               </button>
               <button
                 onClick={() => handleDemoLogin("user")}
-                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                className="w-full text-left px-3 py-2 rounded-xl hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-all duration-200 border border-orange-200/50 dark:border-orange-700/30 group"
               >
-                User: user@gobeng.com / user123
+                <span className="font-medium">User:</span> user@gobeng.com /
+                user123
+                <span className="float-right opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  →
+                </span>
               </button>
             </div>
           </div>
@@ -132,14 +135,26 @@ const Login = () => {
                 Email
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaEnvelope className="text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg
+                    className="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                    />
+                  </svg>
                 </div>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                  className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-700 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                   placeholder="Masukkan email Anda"
                   required
                 />
@@ -151,37 +166,77 @@ const Login = () => {
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <FaLock className="text-gray-400" />
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg
+                    className="w-5 h-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    />
+                  </svg>
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                  className="w-full pl-12 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 bg-white dark:bg-gray-700 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
                   placeholder="Masukkan password Anda"
                   required
                 />
                 <button
                   type="button"
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  className="absolute inset-y-0 right-0 pr-4 flex items-center hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
-                    <FaEyeSlash className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" />
+                    <svg
+                      className="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21"
+                      />
+                    </svg>
                   ) : (
-                    <FaEye className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" />
+                    <svg
+                      className="w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                      />
+                    </svg>
                   )}
                 </button>
               </div>
             </div>
 
-            <motion.button
+            <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-900 dark:bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="w-full bg-gradient-orange text-white py-3 px-4 rounded-xl hover:shadow-2xl transition-all duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed btn-hover"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">
@@ -191,24 +246,24 @@ const Login = () => {
               ) : (
                 "Masuk"
               )}
-            </motion.button>
+            </button>
           </form>
 
           <div className="mt-6 text-center">
             <Link
               to="/forgot-password"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm"
+              className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 text-sm transition-colors duration-200"
             >
               Lupa password?
             </Link>
           </div>
 
-          <div className="mt-4 text-center border-t border-gray-200 dark:border-gray-700 pt-4">
+          <div className="mt-6 text-center border-t border-gray-200 dark:border-gray-700 pt-6">
             <p className="text-gray-600 dark:text-gray-300">
               Belum punya akun?{" "}
               <Link
                 to="/register"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+                className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium transition-colors duration-200"
               >
                 Daftar Sekarang
               </Link>
@@ -218,11 +273,11 @@ const Login = () => {
           <div className="mt-6 text-center">
             <Link
               to="/"
-              className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm flex items-center justify-center"
+              className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm flex items-center justify-center transition-colors duration-200 group"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 mr-1"
+                className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-200"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -238,7 +293,7 @@ const Login = () => {
             </Link>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

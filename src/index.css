@@ -1,51 +1,56 @@
 /*
- * Tailwind CSS v4 Main Stylesheet
+ * Konfigurasi Tailwind CSS v4 - File CSS Utama
  *
- * This file consolidates configuration, base styles, and custom utilities
- * following Tailwind CSS v4's "CSS-First Configuration" approach.
+ * File ini mengkonsolidasikan konfigurasi, gaya dasar, dan utilitas kustom
+ * mengikuti pendekatan "CSS-First Configuration" Tailwind CSS v4.
  *
- * If you need to keep a `tailwind.config.js` for legacy reasons or complex JS-based
- * plugins, you'd add `@config "../../tailwind.config.js";` at the very top of this file
- * (adjust the path to your config file).
+ * Jika Anda masih memerlukan `tailwind.config.js` untuk alasan kompatibilitas mundur
+ * atau plugin berbasis JavaScript yang kompleks, Anda dapat menambahkan
+ * `@config "../../tailwind.config.js";` di baris paling atas file ini
+ * (sesuaikan path ke file config Anda).
  */
 
-@import "tailwindcss"; /* The single import for Tailwind CSS v4 */
+@import "tailwindcss"; /* Satu-satunya import untuk Tailwind CSS v4 */
 
 /*
-  * @theme directive for custom design tokens.
-  * This replaces much of the 'theme.extend' from a traditional tailwind.config.js.
-  * Variables defined here become available as utility classes.
+  * Direktif @theme untuk token desain kustom.
+  * Ini menggantikan sebagian besar 'theme.extend' dari tailwind.config.js
+  * dan membuat variabel tersedia sebagai kelas utilitas.
+  * SEMUA DEFINISI KEYFRAMES JUGA HARUS BERADA DI SINI JIKA INGIN MENGGUNAKAN `theme(--animation-...)`
   */
 @theme {
-  /* Font Families */
-  --font-family-sans: "Inter", "Poppins", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-  --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  /* Warna */
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
 
-  /* Custom Colors (based on your CSS) */
-  --color-blue-dark: #1e3a8a; /* For scrollbar thumb and gradient */
-  --color-blue-light: #3b82f6; /* For focus ring and gradient */
-  --color-gray-100: #f1f1f1; /* For scrollbar track */
-  --color-blue-hover: #1e40af; /* For scrollbar thumb hover */
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef3c7;
+  --color-yellow-200: #fde68a;
+  --color-yellow-300: #fcd34d;
+  --color-yellow-400: #fbbf24;
+  --color-yellow-500: #f59e0b;
+  --color-yellow-600: #d97706;
+  --color-yellow-700: #b45309;
+  --color-yellow-800: #92400e;
+  --color-yellow-900: #78350f;
 
-  /* Default Transition */
-  --transition-property-all: all;
-  --transition-duration-default: 0.2s;
-  --transition-timing-function-default: ease-in-out;
+  /* Tambahan warna abu-abu untuk scrollbar dan border tabel */
+  --color-gray-100: #f1f1f1;
+  --color-gray-200: #e5e7eb;
+  --color-gray-700: #374151; /* Untuk dark mode table border */
+  --color-gray-800: #1f2937; /* Untuk dark mode scrollbar track */
+  --color-gray-900: #111827; /* Untuk dark mode body background */
 
-  /* Keyframes and Animations - Defined directly in @theme */
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  --animation-spin: spin 1s linear infinite;
-
+  /* Definisi Keyframes */
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -56,52 +61,186 @@
       transform: translateY(0);
     }
   }
-  --animation-fade-in: fadeIn 0.6s ease-out; /* Note: Changed to fade-in as per your original CSS */
 
-  /* Custom Box Shadows - Define names for shadows to use with 'shadow-yourname' */
-  --shadow-btn-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-card-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-  /* Gradients - Defined directly in @theme as custom background images */
-  --background-image-gradient-blue: linear-gradient(
+  @keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes fadeInOut {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    10%,
+    90% {
+      opacity: 1;
+    }
+  }
+
+  /* Variabel Animasi */
+  --animation-fade-in: fadeIn 0.6s ease-out;
+  --animation-slide-up: slideUp 0.5s ease-out;
+  --animation-bounce-in: bounceIn 0.8s ease-out;
+  --animation-scale-in: scaleIn 0.4s ease-out;
+  --animation-spin: spin 1s linear infinite; /* Pindahkan di sini */
+  --animation-shine: shine 12s linear infinite; /* Pindahkan di sini */
+  --animation-fade-in-out: fadeInOut 3s ease forwards; /* Pindahkan di sini */
+
+  /* Font Families */
+  --font-family-sans: "Inter", "Poppins", system-ui, -apple-system, sans-serif;
+  --font-family-mono: "Fira Code", "JetBrains Mono", Consolas, monospace;
+
+  /* Border Radius */
+  --border-radius-xs: 0.125rem;
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-2xl: 1rem;
+  --border-radius-3xl: 1.5rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+    0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* Transitions */
+  --transition-colors: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+  --transition-transform: transform 0.2s ease-in-out;
+  --transition-all: all 0.2s ease-in-out;
+
+  /* Gradients - Definisikan di sini agar bisa diakses dengan theme() */
+  --background-image-gradient-orange: linear-gradient(
     135deg,
-    var(--color-blue-dark) 0%,
-    var(--color-blue-light) 100%
+    var(--color-orange-600) 0%,
+    var(--color-orange-500) 100%
   );
   --background-image-gradient-gold: linear-gradient(
     135deg,
-    #f59e0b 0%,
-    #eab308 100%
+    var(--color-yellow-500) 0%,
+    var(--color-yellow-400) 100%
+  );
+  --background-image-gradient-orange-dark: linear-gradient(
+    135deg,
+    var(--color-orange-800) 0%,
+    var(--color-orange-700) 100%
+  );
+  --background-image-gradient-shiny-text: linear-gradient(
+    35deg,
+    var(--color-orange-500) 0%,
+    /* Menggunakan orange.500 karena pink tidak didefinisikan */
+      var(--color-orange-700) 25%,
+    /* Menggunakan orange.700 karena pink tidak didefinisikan */
+      var(--color-orange-500) 75%,
+    var(--color-orange-700) 100%
   );
 }
 
 /*
+  * Plugin Tailwind CSS v4.
+  */
+@plugin "tailwindcss-animate";
+
+/*
+  * Direktif @source untuk mendeteksi kelas di file sumber.
+  */
+@source "./src/**/*.{js,jsx,ts,tsx}";
+@source "*.{js,ts,jsx,tsx,mdx}";
+@source "app/**/*.{ts,tsx}";
+@source "components/**/*.{ts,tsx}";
+/* @source "./public/index.html"; */
+
+/*
   * Base styles applied to global elements.
-  * This is where you put your CSS resets and default element styling.
+  * Ini adalah tempat Anda meletakkan CSS reset dan styling elemen default.
   */
 @layer base {
-  /* Universal reset (still valid CSS, preflight handles most of this) */
+  /* Universal reset (preflight handles most of this) */
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  /* Body styles using Tailwind utilities where possible */
   body {
-    /* Use font-sans defined in @theme */
-    @apply font-sans;
+    font-family: var(--font-family-sans); /* Gunakan variabel CSS langsung */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: var(--transition-colors); /* Gunakan variabel CSS langsung */
   }
 
-  /* Code font-family */
+  /* Gaya Body untuk Dark Mode */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background-color: theme(--color-gray-900);
+      color: theme(--color-gray-100);
+    }
+  }
+
   code {
-    /* Use font-mono defined in @theme */
-    @apply font-mono;
+    font-family: var(--font-family-mono); /* Gunakan variabel CSS langsung */
   }
 
-  /* Custom scrollbar styles */
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -111,47 +250,102 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: theme(--color-blue-dark);
-    border-radius: 4px;
+    background: theme(--color-orange-600);
+    border-radius: theme(--border-radius-md); /* Gunakan variabel CSS */
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: theme(--color-blue-hover);
+    background: theme(--color-orange-700);
   }
 
-  /* Smooth transitions - applied globally using CSS variables from @theme */
-  * {
-    transition: var(--transition-property-all)
-      var(--transition-duration-default)
-      var(--transition-timing-function-default);
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-track {
+      background: theme(--color-gray-800);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: theme(--color-orange-500);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: theme(--color-orange-400);
+    }
   }
 
-  /* Custom table styles */
+  /* Table styles */
   table {
     border-collapse: collapse;
   }
 
   th,
   td {
-    border-bottom: 1px solid theme(--color-gray-200); /* Assuming Tailwind's default gray-200 for #e5e7eb */
+    border-bottom: 1px solid theme(--color-gray-200);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    th,
+    td {
+      border-bottom: 1px solid theme(--color-gray-700);
+    }
+  }
+
+  /* Dark mode specific styles */
+  /* color-scheme: dark; sebaiknya diletakkan di root atau body */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+    }
   }
 }
 
 /*
   * Custom components.
-  * These are specific reusable styles you might define for components.
+  * Ini adalah gaya spesifik yang dapat digunakan kembali untuk komponen.
   */
 @layer components {
   /* Custom button hover effects */
   .btn-hover {
-    @apply transition-all duration-200 ease-in-out hover:-translate-y-0.5; /* approx -2px */
-    box-shadow: theme(--shadow-btn-hover);
+    transition: var(--transition-transform), var(--transition-colors);
+  }
+
+  .btn-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: theme(--shadow-lg); /* Gunakan variabel CSS */
+  }
+
+  .dark .btn-hover:hover {
+    box-shadow: theme(
+      --shadow-2xl
+    ); /* Contoh: bayangan yang lebih gelap untuk dark mode */
   }
 
   /* Custom card hover effect */
   .card-hover {
-    @apply transition-all duration-200 ease-in-out hover:-translate-y-1; /* approx -4px */
-    box-shadow: theme(--shadow-card-hover);
+    transition: var(--transition-transform), var(--transition-colors);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: theme(--shadow-xl); /* Gunakan variabel CSS */
+  }
+
+  .dark .card-hover:hover {
+    box-shadow: theme(
+      --shadow-2xl
+    ); /* Contoh: bayangan yang lebih gelap untuk dark mode */
+  }
+
+  /* Glass morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   /* Mobile menu animation */
@@ -176,41 +370,98 @@
 
 /*
   * Custom utilities.
-  * These are usually one-off utilities that don't fit into existing Tailwind classes.
+  * Ini biasanya utilitas satu kali pakai yang tidak cocok dengan kelas Tailwind yang sudah ada.
   */
 @layer utilities {
-  /* Apply loading animation directly using Tailwind's 'animate' prefix */
-  .animate-spin-custom {
-    animation: theme(--animation-spin);
+  /* Animasi */
+  .animate-fade-in {
+    animation: var(--animation-fade-in);
   }
 
-  /* Apply fade in animation directly using Tailwind's 'animate' prefix */
-  .animate-fade-in-custom {
-    animation: theme(--animation-fade-in);
+  .animate-slide-up {
+    animation: var(--animation-slide-up);
   }
 
-  /* Custom focus styles using Tailwind's built-in ring and border utilities */
+  .animate-bounce-in {
+    animation: var(--animation-bounce-in);
+  }
+
+  .animate-scale-in {
+    animation: var(--animation-scale-in);
+  }
+
+  .animate-spin {
+    animation: var(--animation-spin); /* Gunakan variabel CSS */
+  }
+
+  .animate-fadeInOut {
+    animation: var(--animation-fade-in-out);
+  }
+
+  /* Shiny Text */
+  .shiny-text {
+    background: var(
+      --background-image-gradient-shiny-text
+    ); /* Gunakan variabel CSS */
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: var(--animation-shine); /* Gunakan variabel CSS */
+  }
+
+  /* Focus styles */
   input:focus,
   select:focus,
-  textarea:focus {
-    @apply outline-none ring-2 ring-blue-500 border-transparent; /* Using Tailwind's default blue-500 for #3b82f6 */
+  textarea:focus,
+  button:focus {
+    /* Tambahkan button:focus untuk konsistensi */
+    outline: 2px solid theme(--color-orange-500); /* Gunakan variabel CSS */
+    outline-offset: 2px;
   }
 
-  /* Responsive text (can be handled more natively by Tailwind's responsive breakpoints) */
-  /* For custom breakpoints or specific needs, this can be an explicit utility. */
+  .dark input:focus,
+  .dark select:focus,
+  .dark textarea:focus,
+  .dark button:focus {
+    outline-color: theme(
+      --color-orange-400
+    ); /* Menggunakan orange.400 agar berbeda dari light mode */
+  }
+
+  /* Gradient utilities */
+  .gradient-orange {
+    background: var(--background-image-gradient-orange);
+  }
+
+  .gradient-gold {
+    background: var(--background-image-gradient-gold);
+  }
+
+  .gradient-orange-dark {
+    background: var(--background-image-gradient-orange-dark);
+  }
+
+  /* Responsive text */
   @media (max-width: 640px) {
     .text-responsive {
-      font-size: 0.875rem; /* Equivalent to text-sm */
+      font-size: 0.875rem;
     }
   }
 
-  /* Gradient backgrounds using Tailwind's bg-[...] arbitrary value syntax */
-  /* Or by creating new utility classes if used frequently */
-  .bg-gradient-blue {
-    background-image: theme(--background-image-gradient-blue);
+  /* Loading spinner */
+  .spinner {
+    border: 2px solid theme(--color-gray-200);
+    border-top: 2px solid theme(--color-orange-600);
+    border-radius: 50%;
+    animation: var(--animation-spin); /* Gunakan variabel CSS */
   }
 
-  .bg-gradient-gold {
-    background-image: theme(--background-image-gradient-gold);
+  @media (prefers-color-scheme: dark) {
+    .spinner {
+      border: 2px solid theme(--color-gray-700);
+      border-top: 2px solid theme(--color-orange-500);
+    }
   }
 }

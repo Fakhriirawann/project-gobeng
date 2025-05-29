@@ -2,16 +2,13 @@
 
 import { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../context/AuthContext";
-import { ThemeContext } from "../../context/ThemeContext";
-import { FaSun, FaMoon, FaBars, FaTimes } from "react-icons/fa";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const { user, logout } = useContext(AuthContext);
-  const { darkMode, toggleTheme } = useContext(ThemeContext);
 
   const navigation = [
     { name: "Beranda", href: "/" },
@@ -26,196 +23,186 @@ const Header = () => {
     return `/${user.role}-dashboard`;
   };
 
-  const handleLogout = () => {
-    logout();
-    setIsMenuOpen(false);
-  };
-
   return (
-    <header className="bg-white dark:bg-gray-900 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+    <header className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-lg sticky top-0 z-50 transition-all duration-200 border-b border-gray-200/50 dark:border-gray-800/50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-  <motion.img
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    src="/icon2.png"
-    alt="GoBeng Logo"
-    className="w-18 h-18 shadow-md object-cover"
-  />
-  <span className="text-4xl pb-2 font-extrabold bg-gradient-to-r from-gray-100 via-orange-400 to-gray-500 bg-clip-text text-transparent">
-    GoBeng
-  </span>
-</Link>
-
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative">
+              <div className="w-12 h-12 bg-gradient-orange rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 group-hover:rotate-3">
+                <span className="text-white font-bold text-xl">GB</span>
+              </div>
+              <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
+            </div>
+            <div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
+                GoBeng
+              </span>
+              <div className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
+                Bengkel Cerdas
+              </div>
+            </div>
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-8">
+          <nav className="hidden md:flex space-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition duration-200 font-medium ${
+                className={`relative text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200 font-medium py-2 px-1 group ${
                   location.pathname === item.href
-                    ? "text-blue-900 dark:text-blue-400 font-semibold"
+                    ? "text-orange-600 dark:text-orange-400"
                     : ""
                 }`}
               >
                 {item.name}
+                <span
+                  className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-orange rounded-full transition-all duration-300 ${
+                    location.pathname === item.href
+                      ? "scale-x-100"
+                      : "scale-x-0 group-hover:scale-x-100"
+                  }`}
+                ></span>
               </Link>
             ))}
           </nav>
 
-          {/* Desktop User Menu */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-200"
-            >
-              {darkMode ? (
-                <FaSun className="w-5 h-5" />
-              ) : (
-                <FaMoon className="w-5 h-5" />
-              )}
-            </button>
-
+          {/* User Menu & Theme Toggle */}
+          <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             {user ? (
               <div className="flex items-center space-x-4">
                 <Link
                   to={getDashboardLink()}
-                  className="text-blue-900 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                  className="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-orange-50 dark:hover:bg-orange-900/20"
                 >
                   Dashboard
                 </Link>
-                <span className="text-gray-400">|</span>
-                <span className="text-gray-700 dark:text-gray-300">
-                  Halo, {user.name}
-                </span>
+                <div className="w-px h-6 bg-gray-300 dark:bg-gray-600"></div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-gradient-orange rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">
+                      {user.name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <span className="text-gray-700 dark:text-gray-300 font-medium">
+                    Halo, {user.name}
+                  </span>
+                </div>
                 <button
-                  onClick={handleLogout}
-                  className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-200"
+                  onClick={logout}
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg btn-hover"
                 >
                   Keluar
                 </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-3">
-                <Link
-                  to="/login"
-                  className="text-blue-900 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
-                >
-                  Masuk
-                </Link>
-                <Link
-                  to="/register"
-                  className="bg-blue-900 dark:bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200"
-                >
-                  Daftar
-                </Link>
-              </div>
+              <Link
+                to="/login"
+                className="bg-gradient-orange text-white px-6 py-2.5 rounded-xl hover:shadow-lg transition-all duration-200 font-medium btn-hover"
+              >
+                Masuk
+              </Link>
             )}
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <FaTimes className="w-6 h-6" />
-            ) : (
-              <FaBars className="w-6 h-6" />
-            )}
-          </button>
+          <div className="md:hidden flex items-center space-x-3">
+            <ThemeToggle />
+            <button
+              className="text-gray-700 dark:text-gray-300 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              <svg
+                className={`w-6 h-6 transition-transform duration-200 ${
+                  isMenuOpen ? "rotate-90" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={
+                    isMenuOpen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M4 6h16M4 12h16M4 18h16"
+                  }
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden py-4 border-t border-gray-200 dark:border-gray-700"
-            >
-              <nav className="space-y-3">
-                {navigation.map((item) => (
+        {isMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700 animate-slide-up">
+            <nav className="space-y-3">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`block py-3 px-4 rounded-xl text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 ${
+                    location.pathname === item.href
+                      ? "text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-600"
+                      : ""
+                  }`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              {user ? (
+                <div className="pt-3 border-t border-gray-200 dark:border-gray-700 space-y-3">
+                  <div className="flex items-center space-x-3 px-4 py-2">
+                    <div className="w-10 h-10 bg-gradient-orange rounded-full flex items-center justify-center">
+                      <span className="text-white font-medium">
+                        {user.name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <div>
+                      <div className="text-gray-800 dark:text-gray-200 font-medium">
+                        {user.name}
+                      </div>
+                      <div className="text-sm text-gray-500 dark:text-gray-400 capitalize">
+                        {user.role}
+                      </div>
+                    </div>
+                  </div>
                   <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 font-medium ${
-                      location.pathname === item.href
-                        ? "text-blue-900 dark:text-blue-400 font-semibold"
-                        : ""
-                    }`}
+                    to={getDashboardLink()}
+                    className="block py-3 px-4 rounded-xl text-orange-600 dark:text-orange-400 font-medium hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    {item.name}
+                    Dashboard
                   </Link>
-                ))}
-              </nav>
-
-              <div className="pt-4 border-t border-gray-200 dark:border-gray-700 mt-4">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-gray-700 dark:text-gray-300 font-medium">
-                    Mode Gelap
-                  </span>
                   <button
-                    onClick={toggleTheme}
-                    className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
+                    onClick={() => {
+                      logout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="block w-full text-left py-3 px-4 rounded-xl text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200"
                   >
-                    {darkMode ? (
-                      <FaSun className="w-5 h-5" />
-                    ) : (
-                      <FaMoon className="w-5 h-5" />
-                    )}
+                    Keluar
                   </button>
                 </div>
-
-                {user ? (
-                  <div className="space-y-3">
-                    <Link
-                      to={getDashboardLink()}
-                      className="block py-2 text-blue-900 dark:text-blue-400 font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      Halo, {user.name}
-                    </p>
-                    <button
-                      onClick={handleLogout}
-                      className="w-full text-left py-2 text-red-600 dark:text-red-400 font-medium"
-                    >
-                      Keluar
-                    </button>
-                  </div>
-                ) : (
-                  <div className="space-y-3">
-                    <Link
-                      to="/login"
-                      className="block py-2 text-blue-900 dark:text-blue-400 font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Masuk
-                    </Link>
-                    <Link
-                      to="/register"
-                      className="block py-2 text-blue-900 dark:text-blue-400 font-medium"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      Daftar
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              ) : (
+                <Link
+                  to="/login"
+                  className="block py-3 px-4 rounded-xl text-orange-600 dark:text-orange-400 font-medium hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors duration-200"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Masuk
+                </Link>
+              )}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
