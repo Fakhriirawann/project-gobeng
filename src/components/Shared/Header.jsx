@@ -40,7 +40,7 @@ const Header = () => {
   <motion.img
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
-    src="/icon1.png"
+    src="/icon2.png"
     alt="GoBeng Logo"
     className="w-18 h-18 shadow-md object-cover"
   />
