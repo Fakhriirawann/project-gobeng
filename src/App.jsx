@@ -26,7 +26,7 @@ import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 
 // Shared Components
-import Header from "./components/shared/Header";
+import Header from "./components/Shared/Header";
 import Footer from "./components/shared/Footer";
 import ScrollToTop from "./components/Shared/ScrollToTop.jsx";
 import LoadingScreen from "./components/shared/LoadingScreen";

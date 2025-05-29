@@ -161,7 +161,7 @@ const Homepage = () => {
   return (
     <div>
       {/* Hero Section with Slider */}
-      <section className="relative bg-blue-900 text-white overflow-hidden">
+      <section className="h-[750px] relative bg-blue-900 text-white overflow-hidden">
         <div className="relative h-[600px] md:h-[700px]">
           {heroSlides.map((slide, index) => (
             <div
@@ -201,24 +201,6 @@ const Homepage = () => {
 
           {/* Navigation Arrows */}
           <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition duration-300 z-20"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
             onClick={nextSlide}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition duration-300 z-20"
           >
@@ -236,23 +218,10 @@ const Homepage = () => {
               />
             </svg>
           </button>
-
-          {/* Slide Indicators */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition duration-300 ${
-                  index === currentSlide ? "bg-yellow-400" : "bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
         </div>
 
         {/* Floating Info Cards */}
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10 mb-23">
           <div className="grid md:grid-cols-3 gap-6 -mt-20">
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
               <div className="bg-blue-100 p-3 rounded-full mr-4">

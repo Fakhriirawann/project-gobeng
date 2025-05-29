@@ -37,17 +37,18 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 bg-blue-900 dark:bg-blue-700 rounded-xl flex items-center justify-center"
-            >
-              <span className="text-white font-bold text-xl">GB</span>
-            </motion.div>
-            <span className="text-2xl font-bold text-blue-900 dark:text-blue-400">
-              GoBeng
-            </span>
-          </Link>
+  <motion.img
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    src="/logo.jpeg"
+    alt="GoBeng Logo"
+    className="w-15 h-15 rounded-full shadow-md object-cover"
+  />
+  <span className="text-4xl pb-2 font-extrabold bg-gradient-to-r from-gray-100 via-orange-400 to-gray-500 bg-clip-text text-transparent">
+    GoBeng
+  </span>
+</Link>
+
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex space-x-8">
