@@ -47,10 +47,10 @@ const UserDashboard = () => {
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
-        <div className="flex items-center justify-center h-16 bg-orange-900 dark:bg-orange-800">
+        <div className="flex items-center justify-center h-16 bg-orange-400 dark:bg-orange-800">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center">
-              <span className="text-orange-900 font-bold text-lg">GB</span>
+              <span className="text-orange-400 font-bold text-lg">GB</span>
             </div>
             <span className="text-white text-xl font-bold">GoBeng</span>
           </div>
@@ -61,9 +61,9 @@ const UserDashboard = () => {
             <Link
               key={index}
               to={item.path}
-              className={`flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-900 dark:hover:text-orange-400 transition-colors duration-200 ${
+              className={`flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-400 dark:hover:text-orange-400 transition-colors duration-200 ${
                 location.pathname === item.path
-                  ? "bg-orange-50 dark:bg-gray-700 text-orange-900 dark:text-orange-400 border-r-4 border-orange-900 dark:border-orange-400"
+                  ? "bg-orange-50 dark:bg-gray-700 text-orange-400 dark:text-orange-400 border-r-4 border-orange-400 dark:border-orange-400"
                   : ""
               }`}
               onClick={() => setSidebarOpen(false)}
@@ -180,7 +180,7 @@ const DashboardHome = () => {
     {
       title: "Reservasi Layanan",
       description: "Booking servis mudah dan cepat",
-      icon: <FaCalendarAlt className="text-3xl text-orange-900" />,
+      icon: <FaCalendarAlt className="text-3xl text-orange-400" />,
       link: "/user-dashboard/reservation",
       color: "bg-orange-50 hover:bg-orange-100",
     },
@@ -203,7 +203,7 @@ const DashboardHome = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-400"></div>
       </div>
     );
   }
@@ -221,7 +221,7 @@ const DashboardHome = () => {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Total Layanan
           </h3>
-          <p className="text-3xl font-bold text-orange-900 dark:text-orange-400">
+          <p className="text-3xl font-bold text-orange-400 dark:text-orange-400">
             {stats.totalServices}
           </p>
         </motion.div>
@@ -333,8 +333,8 @@ const DashboardHome = () => {
                   item.status === "Selesai"
                     ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                     : item.status === "Terjadwal"
-                    ? "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
-                    : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                    ? "bg-orange-100 text-orange-800 dark:bg-orange-400 dark:text-orange-200"
+                    : "bg-orange-100 text-orange-800 dark:bg-orange-400 dark:text-orange-200"
                 }`}
               >
                 {item.status}
@@ -440,7 +440,7 @@ const ReservationPage = () => {
               }
               className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 formData.serviceType === "workshop"
-                  ? "bg-orange-900 text-white"
+                  ? "bg-orange-400 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -451,7 +451,7 @@ const ReservationPage = () => {
               onClick={() => setFormData({ ...formData, serviceType: "home" })}
               className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 formData.serviceType === "home"
-                  ? "bg-orange-900 text-white"
+                  ? "bg-orange-400 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -556,7 +556,7 @@ const ReservationPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-orange-900 dark:bg-orange-700 text-white py-3 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-orange-400 dark:bg-orange-700 text-white py-3 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <div className="flex items-center justify-center">
@@ -615,7 +615,7 @@ const ReservationPage = () => {
                       workshop: workshop.id.toString(),
                     })
                   }
-                  className="w-full bg-orange-900 dark:bg-orange-700 text-white py-2 rounded text-sm hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
+                  className="w-full bg-orange-400 dark:bg-orange-700 text-white py-2 rounded text-sm hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
                 >
                   Pilih Bengkel
                 </button>
@@ -690,7 +690,7 @@ const HistoryPage = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-400"></div>
       </div>
     );
   }
@@ -918,7 +918,7 @@ const ProfilePage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-orange-900 dark:bg-orange-700 text-white py-2 px-6 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 disabled:opacity-50"
+            className="bg-orange-400 dark:bg-orange-700 text-white py-2 px-6 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 disabled:opacity-50"
           >
             {loading ? "Menyimpan..." : "Simpan Perubahan"}
           </button>
@@ -1099,11 +1099,11 @@ const NotificationsPage = () => {
   const getNotificationColor = (type) => {
     switch (type) {
       case "reminder":
-        return "border-l-orange-500 bg-orange-50 dark:bg-orange-900/20";
+        return "border-l-orange-500 bg-orange-50 dark:bg-orange-400/20";
       case "promo":
         return "border-l-green-500 bg-green-50 dark:bg-green-900/20";
       case "info":
-        return "border-l-orange-500 bg-orange-50 dark:bg-orange-900/20";
+        return "border-l-orange-500 bg-orange-50 dark:bg-orange-400/20";
       case "booking":
         return "border-l-purple-500 bg-purple-50 dark:bg-purple-900/20";
       default:
@@ -1114,7 +1114,7 @@ const NotificationsPage = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-400"></div>
       </div>
     );
   }

@@ -95,7 +95,7 @@ const FAQ = () => {
   return (
     <div className="py-16">
       {/* Hero Section */}
-      <section className="bg-orange-900 text-white py-16">
+      <section className="bg-orange-400 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-6">
             Frequently Asked Questions
@@ -132,7 +132,7 @@ const FAQ = () => {
           <div className="max-w-4xl mx-auto">
             {faqs.map((category, categoryIndex) => (
               <div key={categoryIndex} className="mb-12">
-                <h2 className="text-2xl font-bold text-orange-900 mb-6 border-b-2 border-orange-900 pb-2">
+                <h2 className="text-2xl font-bold text-orange-400 mb-6 border-b-2 border-orange-400 pb-2">
                   {category.category}
                 </h2>
                 <div className="space-y-4">
@@ -178,7 +178,7 @@ const FAQ = () => {
       {/* Contact Support */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-orange-900 mb-6">
+          <h2 className="text-3xl font-bold text-orange-400 mb-6">
             Masih Ada Pertanyaan?
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -188,7 +188,7 @@ const FAQ = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href="/contact"
-              className="bg-orange-900 text-white px-8 py-3 rounded-lg hover:bg-orange-800 transition duration-200 font-medium"
+              className="bg-orange-400 text-white px-8 py-3 rounded-lg hover:bg-orange-800 transition duration-200 font-medium"
             >
               Hubungi Kami
             </a>
@@ -200,7 +200,7 @@ const FAQ = () => {
             </a>
             <a
               href="mailto:support@gobeng.com"
-              className="border-2 border-orange-900 text-orange-900 px-8 py-3 rounded-lg hover:bg-orange-900 hover:text-white transition duration-200 font-medium"
+              className="border-2 border-orange-400 text-orange-400 px-8 py-3 rounded-lg hover:bg-orange-400 hover:text-white transition duration-200 font-medium"
             >
               Email Support
             </a>
@@ -211,13 +211,13 @@ const FAQ = () => {
       {/* Quick Tips */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-900 mb-12">
+          <h2 className="text-3xl font-bold text-center text-orange-400 mb-12">
             Tips Berguna
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center p-6">
               <div className="text-4xl mb-4">💡</div>
-              <h3 className="text-xl font-semibold text-orange-900 mb-3">
+              <h3 className="text-xl font-semibold text-orange-400 mb-3">
                 Perawatan Rutin
               </h3>
               <p className="text-gray-600">
@@ -227,7 +227,7 @@ const FAQ = () => {
             </div>
             <div className="text-center p-6">
               <div className="text-4xl mb-4">⏰</div>
-              <h3 className="text-xl font-semibold text-orange-900 mb-3">
+              <h3 className="text-xl font-semibold text-orange-400 mb-3">
                 Booking Advance
               </h3>
               <p className="text-gray-600">
@@ -237,7 +237,7 @@ const FAQ = () => {
             </div>
             <div className="text-center p-6">
               <div className="text-4xl mb-4">📱</div>
-              <h3 className="text-xl font-semibold text-orange-900 mb-3">
+              <h3 className="text-xl font-semibold text-orange-400 mb-3">
                 Gunakan Aplikasi
               </h3>
               <p className="text-gray-600">

@@ -52,7 +52,7 @@ const Footer = () => {
           >
             <div className="flex items-center space-x-3 mb-6">
               <div className="w-12 h-12 bg-orange-400 rounded-xl flex items-center justify-center">
-                <span className="text-orange-900 font-bold text-xl">GB</span>
+                <span className="text-white font-bold text-xl">GB</span>
               </div>
               <span className="text-2xl font-bold">GoBeng</span>
             </div>
@@ -181,9 +181,9 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Masukkan email Anda"
-                className="flex-1 px-4 py-3 rounded-l-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400"
+                className="flex-1 px-4 py-3 rounded-l-lg ring-1 ring-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400"
               />
-              <button className="bg-orange-400 text-orange-900 px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-300 transition duration-200">
+              <button className="bg-orange-400 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-300 transition duration-200">
                 Berlangganan
               </button>
             </div>

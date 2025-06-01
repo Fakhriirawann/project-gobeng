@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-900 to-orange-700 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-400 to-orange-700 flex items-center justify-center px-4">
       <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -23,13 +23,13 @@ const NotFound = () => {
           <div className="space-x-4">
             <Link
               to="/"
-              className="bg-orange-400 text-orange-900 px-6 py-3 rounded-lg font-semibold hover:bg-orange-300 transition duration-300 inline-block"
+              className="bg-orange-400 text-orange-400 px-6 py-3 rounded-lg font-semibold hover:bg-orange-300 transition duration-300 inline-block"
             >
               Kembali ke Beranda
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-900 transition duration-300 inline-block"
+              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-400 transition duration-300 inline-block"
             >
               Hubungi Kami
             </Link>

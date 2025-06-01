@@ -44,10 +44,10 @@ const KasirDashboard = () => {
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
-        <div className="flex items-center justify-center h-16 bg-orange-900 dark:bg-orange-800">
+        <div className="flex items-center justify-center h-16 bg-orange-400 dark:bg-orange-800">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center">
-              <span className="text-orange-900 font-bold text-lg">GB</span>
+              <span className="text-orange-400 font-bold text-lg">GB</span>
             </div>
             <span className="text-white text-xl font-bold">GoBeng</span>
           </div>
@@ -58,9 +58,9 @@ const KasirDashboard = () => {
             <Link
               key={index}
               to={item.path}
-              className={`flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-900 dark:hover:text-orange-400 transition-colors duration-200 ${
+              className={`flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-400 dark:hover:text-orange-400 transition-colors duration-200 ${
                 location.pathname === item.path
-                  ? "bg-orange-50 dark:bg-gray-700 text-orange-900 dark:text-orange-400 border-r-4 border-orange-900 dark:border-orange-400"
+                  ? "bg-orange-50 dark:bg-gray-700 text-orange-400 dark:text-orange-400 border-r-4 border-orange-400 dark:border-orange-400"
                   : ""
               }`}
               onClick={() => setSidebarOpen(false)}
@@ -174,7 +174,7 @@ const KasirDashboardHome = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-400"></div>
       </div>
     );
   }
@@ -192,7 +192,7 @@ const KasirDashboardHome = () => {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Transaksi Hari Ini
           </h3>
-          <p className="text-3xl font-bold text-orange-900 dark:text-orange-400">
+          <p className="text-3xl font-bold text-orange-400 dark:text-orange-400">
             {todayStats.transactions}
           </p>
         </motion.div>
@@ -248,14 +248,14 @@ const KasirDashboardHome = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-center"
         >
-          <FaShoppingCart className="text-4xl text-orange-900 dark:text-orange-400 mx-auto mb-4" />
+          <FaShoppingCart className="text-4xl text-orange-400 dark:text-orange-400 mx-auto mb-4" />
           <h3 className="text-lg font-semibold mb-2">Transaksi Baru</h3>
           <p className="text-gray-600 dark:text-gray-400 mb-4">
             Mulai transaksi penjualan baru
           </p>
           <Link
             to="/kasir-dashboard/transaction"
-            className="bg-orange-900 dark:bg-orange-700 text-white px-4 py-2 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
+            className="bg-orange-400 dark:bg-orange-700 text-white px-4 py-2 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
           >
             Mulai Transaksi
           </Link>
@@ -371,7 +371,7 @@ const KasirDashboardHome = () => {
                       className={`px-2 py-1 rounded-full text-xs ${
                         transaction.status === "Selesai"
                           ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                          : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                          : "bg-orange-100 text-orange-800 dark:bg-orange-400 dark:text-orange-200"
                       }`}
                     >
                       {transaction.status}
@@ -534,7 +534,7 @@ const TransactionPage = () => {
                 </div>
                 <button
                   onClick={() => addToCart(service)}
-                  className="bg-orange-900 dark:bg-orange-700 text-white px-3 py-1 rounded hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
+                  className="bg-orange-400 dark:bg-orange-700 text-white px-3 py-1 rounded hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
                 >
                   <FaPlus />
                 </button>
@@ -565,7 +565,7 @@ const TransactionPage = () => {
                 <button
                   onClick={() => addToCart(product)}
                   disabled={product.stock === 0}
-                  className="bg-orange-900 dark:bg-orange-700 text-white px-3 py-1 rounded hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-orange-400 dark:bg-orange-700 text-white px-3 py-1 rounded hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <FaPlus />
                 </button>
@@ -757,7 +757,7 @@ const InventoryPage = () => {
       return {
         status: "Stok Rendah",
         color:
-          "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200",
+          "bg-orange-100 text-orange-800 dark:bg-orange-400 dark:text-orange-200",
       };
     return {
       status: "Tersedia",
@@ -769,7 +769,7 @@ const InventoryPage = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-400"></div>
       </div>
     );
   }

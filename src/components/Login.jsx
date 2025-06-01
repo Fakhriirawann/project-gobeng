@@ -67,9 +67,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-orange-900 to-orange-700 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-orange-400 to-orange-700 py-12 px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-orange-900 opacity-80"></div>
+        <div className="absolute inset-0 bg-orange-400 opacity-80"></div>
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-20"></div>
       </div>
 
@@ -87,11 +87,11 @@ const Login = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="w-20 h-20 bg-orange-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-orange-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-2xl">GB</span>
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-orange-900 dark:text-orange-400 mb-2">
+            <h1 className="text-3xl font-bold text-orange-400 dark:text-orange-400 mb-2">
               GoBeng
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
@@ -100,8 +100,8 @@ const Login = () => {
           </div>
 
           {/* Demo Accounts Info */}
-          <div className="bg-orange-50 dark:bg-orange-900/30 rounded-lg p-4 mb-6 text-sm">
-            <h3 className="font-semibold text-orange-900 dark:text-orange-300 mb-2">
+          <div className="bg-orange-50 dark:bg-orange-400/30 rounded-lg p-4 mb-6 text-sm">
+            <h3 className="font-semibold text-orange-400 dark:text-orange-300 mb-2">
               Demo Accounts:
             </h3>
             <div className="space-y-2 text-orange-800 dark:text-orange-200">
@@ -179,7 +179,7 @@ const Login = () => {
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-orange-900 dark:bg-orange-700 text-white py-3 px-4 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-orange-400 dark:bg-orange-700 text-white py-3 px-4 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

@@ -13,7 +13,7 @@ const Homepage = () => {
       subtitle: "Dimanapun Anda Berada",
       description:
         "Nikmati layanan bengkel terpercaya dengan teknologi modern. Reservasi mudah, pelayanan profesional, kepuasan terjamin.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/assets/bengrkt ceradas.jpg",
       cta: "Reservasi Sekarang",
       ctaLink: "/login",
     },
@@ -22,7 +22,7 @@ const Homepage = () => {
       subtitle: "Bengkel Datang ke Rumah Anda",
       description:
         "Tidak perlu repot ke bengkel, teknisi profesional kami siap datang ke lokasi Anda dengan peralatan lengkap.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/assets/Home.jpg",
       cta: "Pesan Home Service",
       ctaLink: "/login",
     },
@@ -31,7 +31,7 @@ const Homepage = () => {
       subtitle: "Bantuan Kapanpun Anda Butuhkan",
       description:
         "Mobil mogok? Ban bocor? Jangan khawatir, layanan darurat kami siap membantu 24 jam sehari, 7 hari seminggu.",
-      image: "/placeholder.svg?height=600&width=1200",
+      image: "/assets/24.jpg",
       cta: "Hubungi Darurat",
       ctaLink: "/contact",
     },
@@ -73,21 +73,21 @@ const Homepage = () => {
       role: "Pengusaha",
       text: "Pelayanan sangat memuaskan, teknisi profesional dan harga terjangkau. Saya tidak perlu khawatir lagi tentang perawatan mobil saya.",
       rating: 5,
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/assets/budi.jpeg",
     },
     {
       name: "Sari Dewi",
       role: "Ibu Rumah Tangga",
       text: "Home service nya sangat membantu, tidak perlu repot ke bengkel. Teknisi datang tepat waktu dan sangat ramah.",
       rating: 5,
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/assets/sari.jpeg",
     },
     {
       name: "Ahmad Rahman",
       role: "Karyawan Swasta",
       text: "Aplikasi mudah digunakan, booking servis jadi lebih praktis. Notifikasi pengingat servis berkala juga sangat membantu.",
       rating: 4,
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/assets/ahmad.jpeg",
     },
   ];
 
@@ -161,7 +161,7 @@ const Homepage = () => {
   return (
     <div>
       {/* Hero Section with Slider */}
-      <section className="relative bg-orange-900 text-white overflow-hidden">
+      <section className="relative bg-orange-400 text-white overflow-hidden">
         <div className="relative h-[600px] md:h-[700px]">
           {heroSlides.map((slide, index) => (
             <div
@@ -171,13 +171,13 @@ const Homepage = () => {
               }`}
             >
               <div
-                className="absolute inset-0 bg-cover bg-center opacity-20"
+                className="absolute inset-0 bg-cover bg-center opacity-90"
                 style={{
                   backgroundImage: `url('${slide.image}')`,
                 }}
               ></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-900 via-orange-900/80 to-transparent"></div>
-              <div className="relative container mx-auto px-4 h-full flex items-center z-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-orange-900/80 to-transparent"></div>
+              <div className="relative container mx-auto px-4 h-full flex items-center z-10 -mt-20">
                 <div className="max-w-2xl">
                   <h2 className="text-xl md:text-2xl font-medium mb-2 text-orange-300 animate-fade-in">
                     {slide.subtitle}
@@ -198,66 +198,15 @@ const Homepage = () => {
               </div>
             </div>
           ))}
-
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition duration-300 z-20"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full transition duration-300 z-20"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-
-          {/* Slide Indicators */}
-          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition duration-300 ${
-                  index === currentSlide ? "bg-orange-400" : "bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
         </div>
 
         {/* Floating Info Cards */}
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-3 gap-6 -mt-20">
+          <div className="grid md:grid-cols-3 gap-6 -mt-48 pb-6">
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
               <div className="bg-orange-100 p-3 rounded-full mr-4">
                 <svg
-                  className="w-8 h-8 text-orange-900"
+                  className="w-8 h-8 text-orange-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -289,7 +238,7 @@ const Homepage = () => {
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
               <div className="bg-orange-100 p-3 rounded-full mr-4">
                 <svg
-                  className="w-8 h-8 text-orange-900"
+                  className="w-8 h-8 text-orange-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -321,7 +270,7 @@ const Homepage = () => {
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
               <div className="bg-orange-100 p-3 rounded-full mr-4">
                 <svg
-                  className="w-8 h-8 text-orange-900"
+                  className="w-8 h-8 text-orange-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -349,7 +298,7 @@ const Homepage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
               Layanan Unggulan Kami
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -367,7 +316,7 @@ const Homepage = () => {
                 <div className="bg-orange-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl">{feature.icon}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-orange-900 mb-3">
+                <h3 className="text-xl font-semibold text-orange-400 mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>
@@ -381,7 +330,7 @@ const Homepage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
               Layanan Bengkel
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -400,7 +349,7 @@ const Homepage = () => {
                 <h3 className="font-semibold text-gray-800 mb-2">
                   {service.name}
                 </h3>
-                <p className="text-orange-900 text-sm font-medium">
+                <p className="text-orange-400 text-sm font-medium">
                   {service.price}
                 </p>
               </div>
@@ -410,7 +359,7 @@ const Homepage = () => {
           <div className="text-center mt-10">
             <Link
               to="/promo"
-              className="inline-flex items-center text-orange-900 font-semibold hover:text-orange-700 transition duration-200"
+              className="inline-flex items-center text-orange-400 font-semibold hover:text-orange-700 transition duration-200"
             >
               Lihat semua layanan
               <svg
@@ -434,7 +383,7 @@ const Homepage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
               Cara Kerja GoBeng
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -478,10 +427,10 @@ const Homepage = () => {
                 <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
                   <span className="text-3xl">{item.icon}</span>
                 </div>
-                <div className="bg-orange-900 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-bold">
+                <div className="bg-orange-400 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-bold">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-semibold text-orange-900 mb-2">
+                <h3 className="text-xl font-semibold text-orange-400 mb-2">
                   {item.title}
                 </h3>
                 <p className="text-gray-600">{item.description}</p>
@@ -492,7 +441,7 @@ const Homepage = () => {
       </section>
 
       {/* Stats Section */}
-      <section id="stats-section" className="py-20 bg-orange-900 text-white">
+      <section id="stats-section" className="py-20 bg-orange-400 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -520,7 +469,7 @@ const Homepage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
               Apa Kata Pelanggan Kami
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -572,7 +521,7 @@ const Homepage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-orange-900 text-white">
+      <section className="py-20 bg-orange-400 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Siap Merasakan Layanan Terbaik?
@@ -584,13 +533,13 @@ const Homepage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/login"
-              className="bg-orange-400 text-orange-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-300 transition duration-300 btn-hover"
+              className="bg-orange-300 text-orange-00 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-300 transition duration-300 btn-hover"
             >
               Mulai Sekarang
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-orange-900 transition duration-300"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-orange-400 transition duration-300"
             >
               Hubungi Kami
             </Link>
