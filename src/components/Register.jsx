@@ -21,7 +21,13 @@ const Register = () => {
     phone: "",
     password: "",
     confirmPassword: "",
+    role: "user",
+    bengkelName: "",
+    address: "",
+    description: "",
+    image: null,
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -92,13 +98,19 @@ const Register = () => {
     setIsLoading(true);
 
     try {
-      await register({
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        password: formData.password,
-        role: "user", // Default role for new registrations
-      });
+      let dataToSend = formData;
+
+      if (formData.role === "mitra") {
+        const fd = new FormData();
+        for (let key in formData) {
+          if (formData[key] !== null) {
+            fd.append(key, formData[key]);
+          }
+        }
+        dataToSend = fd;
+      }
+
+      await register(dataToSend);
 
       // Redirect to login page after successful registration
       navigate("/login");
@@ -247,6 +259,89 @@ const Register = () => {
                     </div>
                   </div>
                 </div>
+
+                <div className="my-6 flex items-center">
+                  <input
+                    type="checkbox"
+                    id="isMitra"
+                    checked={formData.role === "mitra"}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        role: e.target.checked ? "mitra" : "user",
+                      })
+                    }
+                    className="w-4 h-4 text-orange-500 border-gray-300 rounded focus:ring-orange-400"
+                  />
+                  <label
+                    htmlFor="isMitra"
+                    className="ml-2 text-sm text-gray-700 dark:text-gray-300"
+                  >
+                    Daftar sebagai Mitra Bengkel
+                  </label>
+                </div>
+
+                {formData.role === "mitra" && (
+                  <div className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Nama Bengkel
+                      </label>
+                      <input
+                        type="text"
+                        name="bengkelName"
+                        value={formData.bengkelName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-700 text-black dark:text-white"
+                        placeholder="Contoh: Bengkel Maju Jaya"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Alamat Bengkel
+                      </label>
+                      <input
+                        type="text"
+                        name="address"
+                        value={formData.address}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-700 text-black dark:text-white"
+                        placeholder="Alamat lengkap bengkel"
+                        required
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Deskripsi Bengkel
+                      </label>
+                      <textarea
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        rows={3}
+                        className="w-full px-4 py-3 border rounded-lg bg-white dark:bg-gray-700 text-black dark:text-white"
+                        placeholder="Ceritakan layanan unggulan bengkel Anda"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Foto Bengkel (opsional)
+                      </label>
+                      <input
+                        type="file"
+                        name="image"
+                        onChange={(e) =>
+                          setFormData({ ...formData, image: e.target.files[0] })
+                        }
+                        className="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-100 file:text-orange-700 hover:file:bg-orange-200"
+                      />
+                    </div>
+                  </div>
+                )}
 
                 <motion.button
                   type="button"
