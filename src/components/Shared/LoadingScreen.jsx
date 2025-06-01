@@ -12,8 +12,12 @@ const LoadingScreen = () => {
           transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <span className="text-orange-400 font-bold text-3xl">GB</span>
+          <div className="w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-4 overflow-hidden">
+            <img
+              src="/icon.png"
+              alt="Logo"
+              className="w-full h-full object-cover scale-150"
+            />
           </div>
           <h1 className="text-3xl font-bold text-white mb-2">GoBeng</h1>
           <p className="text-orange-200">Solusi Bengkel Cerdas</p>
