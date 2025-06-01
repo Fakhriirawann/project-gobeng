@@ -61,16 +61,24 @@ const KasirDashboard = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 border-r border-gray-200 dark:border-gray-700`}
       >
         {/* Logo Header */}
+
         <div className="flex items-center justify-center h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-orange-600 font-bold text-xl">GB</span>
+          <Link
+            to="/"
+            className="flex items-center space-x-3 hover:opacity-90 transition duration-200"
+          >
+            <div className="w-20 h-20  flex items-center justify-center overflow-hidden">
+              <img
+                src="/icon.png"
+                alt="GoBeng Icon"
+                className="w-32 h-32 object-contain"
+              />
             </div>
             <div>
               <span className="text-white text-2xl font-bold">GoBeng</span>
               <p className="text-orange-100 text-sm">Kasir Pro</p>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* User Info */}

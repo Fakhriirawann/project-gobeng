@@ -46,66 +46,70 @@ const About = () => {
   return (
     <div className="py-16">
       {/* Hero Section */}
-      <section className="bg-orange-400 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold mb-6">Tentang GoBeng</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Kami adalah platform bengkel digital yang menghubungkan pelanggan
-            dengan bengkel terpercaya di seluruh Indonesia. Dengan teknologi
-            modern dan layanan profesional, kami berkomitmen memberikan
-            pengalaman terbaik.
-          </p>
-        </div>
-      </section>
+     {/* Tentang GoBeng */}
+<section className="relative bg-orange-400 text-white py-20 overflow-hidden">
+  <div className="absolute inset-0 bg-[url('/assets/bg-pattern.svg')] opacity-10 bg-repeat"></div>
+  <div className="container mx-auto px-4 text-center relative z-10">
+    <h1 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
+      Tentang <span className="underline decoration-white/50">GoBeng</span>
+    </h1>
+    <p className="text-xl md:text-2xl max-w-3xl mx-auto text-orange-100 animate-fade-in-up">
+      Platform bengkel digital yang menghubungkan Anda dengan bengkel terpercaya di seluruh Indonesia. Kami hadir untuk memberikan pengalaman layanan otomotif yang cepat, mudah, dan terpercaya.
+    </p>
+  </div>
+</section>
 
-      {/* Vision & Mission */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-3xl font-bold text-orange-400 mb-6">
-                Visi Kami
-              </h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Menjadi platform bengkel digital terdepan di Indonesia yang
-                memberikan solusi perawatan kendaraan yang mudah, cepat, dan
-                terpercaya bagi seluruh masyarakat Indonesia.
-              </p>
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-orange-400 mb-6">
-                Misi Kami
-              </h2>
-              <ul className="text-gray-600 text-lg space-y-3">
-                <li>• Menyediakan layanan bengkel berkualitas tinggi</li>
-                <li>• Mengintegrasikan teknologi dalam industri otomotif</li>
-                <li>• Membangun jaringan bengkel mitra terpercaya</li>
-                <li>• Memberikan kemudahan akses layanan 24/7</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+{/* Visi & Misi */}
+<section className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="animate-fade-in-left">
+        <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
+          Visi Kami
+        </h2>
+        <p className="text-gray-700 text-lg leading-relaxed">
+          Menjadi platform bengkel digital terdepan di Indonesia yang memberikan solusi perawatan kendaraan yang mudah, cepat, dan terpercaya.
+        </p>
+      </div>
+      <div className="animate-fade-in-right">
+        <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
+          Misi Kami
+        </h2>
+        <ul className="text-gray-700 text-lg space-y-4 list-inside list-disc">
+          <li>Menyediakan layanan bengkel berkualitas tinggi</li>
+          <li>Mengintegrasikan teknologi dalam industri otomotif</li>
+          <li>Membangun jaringan bengkel mitra terpercaya</li>
+          <li>Memberikan kemudahan akses layanan 24/7</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {/* Values */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-400 mb-12">
-            Nilai-Nilai Kami
-          </h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold text-orange-400 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600">{value.description}</p>
-              </div>
-            ))}
+{/* Nilai-Nilai */}
+<section className="py-20 bg-gray-50">
+  <div className="container mx-auto px-4">
+    <h2 className="text-3xl md:text-4xl font-bold text-center text-orange-400 mb-12">
+      Nilai-Nilai Kami
+    </h2>
+    <div className="grid md:grid-cols-4 gap-8 text-center">
+      {values.map((value, index) => (
+        <div
+          key={index}
+          className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 animate-fade-in"
+        >
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-100 flex items-center justify-center text-3xl text-orange-500">
+            {value.icon}
           </div>
+          <h3 className="text-xl font-semibold text-orange-400 mb-2">
+            {value.title}
+          </h3>
+          <p className="text-gray-600">{value.description}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Team */}
       <section className="py-16 bg-white">

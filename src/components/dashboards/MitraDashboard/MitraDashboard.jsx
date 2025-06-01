@@ -1,5 +1,5 @@
 "use client";
-
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -67,14 +67,23 @@ const MitraDashboard = () => {
       >
         {/* Logo Header */}
         <div className="flex items-center justify-between h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800 px-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-orange-600 font-bold text-xl">GB</span>
-            </div>
-            <div>
-              <span className="text-white text-2xl font-bold">GoBeng</span>
-              <p className="text-orange-100 text-sm">Mitra Panel</p>
-            </div>
+        <div className="flex items-center justify-between h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800 px-6">
+        <Link
+          to="/"
+          className="flex items-center space-x-3 hover:opacity-90 transition duration-200"
+        >
+          <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+            <img
+              src="/icon.png"
+              alt="GoBeng Icon"
+              className="w-32 h-32 object-contain"
+            />
+          </div>
+          <div>
+            <span className="text-white text-2xl font-bold">GoBeng</span>
+            <p className="text-orange-100 text-sm">Mitra Panel</p>
+          </div>
+        </Link>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
