@@ -80,7 +80,7 @@ const AdminDashboard = ({ user, onLogout }) => {
             <h1 className="text-2xl font-bold text-orange-400">
               Dashboard Admin
             </h1>
-            <p className="text-gray-600">Selamat datang, {user.name}</p>
+            <p className="text-gray-600">Selamat datang, {user?.name || "Admin"}</p>
           </div>
           <button
             onClick={onLogout}
