@@ -140,11 +140,8 @@ const KasirDashboard = () => {
         </div>
 
         {/* Logout Button */}
-        <div className="absolute bottom-0 w-full p-4">
-          <button
-            onClick={logout}
-            className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group"
-          >
+        <div className="p-4">
+          <button className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group">
             <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
             <span className="font-medium">Keluar</span>
           </button>

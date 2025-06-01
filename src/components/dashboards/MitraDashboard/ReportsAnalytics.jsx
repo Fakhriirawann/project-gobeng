@@ -59,22 +59,22 @@ const ReportsAnalytics = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-4 sm:p-6">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
               Laporan & Analitik
             </h2>
             <p className="text-gray-600 dark:text-gray-400">
               Analisis performa bisnis Anda
             </p>
           </div>
-          <div className="flex space-x-3">
+          <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
             <div className="relative">
               <select
                 value={dateRange}
                 onChange={(e) => setDateRange(e.target.value)}
-                className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none"
+                className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none min-w-[160px]"
               >
                 <option value="today">Hari Ini</option>
                 <option value="week">Minggu Ini</option>
@@ -84,7 +84,7 @@ const ReportsAnalytics = () => {
               </select>
               <FaCalendarAlt className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400" />
             </div>
-            <button className="bg-orange-600 text-white px-4 py-2 rounded-xl hover:bg-orange-700 transition-colors duration-200 flex items-center space-x-2">
+            <button className="bg-orange-600 text-white px-4 py-2 rounded-xl hover:bg-orange-700 transition-colors duration-200 flex items-center justify-center space-x-2">
               <FaDownload />
               <span>Export</span>
             </button>
@@ -113,17 +113,19 @@ const ReportsAnalytics = () => {
             >
               {report.icon}
             </div>
-            <span className="font-medium">{report.name}</span>
+            <span className="font-medium text-sm sm:text-base">
+              {report.name}
+            </span>
           </button>
         ))}
       </div>
 
       {/* Report Content */}
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-6">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 p-4 sm:p-6">
         {selectedReport === "sales" && (
           <div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 Laporan Penjualan
               </h3>
               <div className="flex items-center space-x-2 text-sm text-gray-600 dark:text-gray-400">
@@ -147,7 +149,7 @@ const ReportsAnalytics = () => {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Total Pendapatan
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   Rp {salesData.summary.totalRevenue.toLocaleString("id-ID")}
                 </p>
               </div>
@@ -155,7 +157,7 @@ const ReportsAnalytics = () => {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Total Transaksi
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   {salesData.summary.totalTransactions}
                 </p>
               </div>
@@ -163,7 +165,7 @@ const ReportsAnalytics = () => {
                 <p className="text-sm text-gray-600 dark:text-gray-400">
                   Rata-rata Transaksi
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   Rp{" "}
                   {salesData.summary.averageTransaction.toLocaleString("id-ID")}
                 </p>
@@ -175,20 +177,20 @@ const ReportsAnalytics = () => {
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Grafik Penjualan
               </h4>
-              <div className="h-64 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
+              <div className="h-48 sm:h-64 bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4">
                 <div className="h-full flex items-end justify-between">
                   {salesData.daily.map((day, index) => {
                     const height = (day.revenue / 2500000) * 100;
                     return (
                       <div
                         key={index}
-                        className="flex flex-col items-center justify-end h-full"
+                        className="flex flex-col items-center justify-end h-full flex-1 mx-1"
                       >
                         <div
-                          className="w-12 bg-orange-600 dark:bg-orange-500 rounded-t-md transition-all duration-500"
+                          className="w-full max-w-12 bg-orange-600 dark:bg-orange-500 rounded-t-md transition-all duration-500"
                           style={{ height: `${height}%` }}
                         ></div>
-                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-2 text-center">
                           {day.date}
                         </p>
                       </div>
@@ -203,14 +205,14 @@ const ReportsAnalytics = () => {
         {selectedReport === "services" && (
           <div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 Layanan Populer
               </h3>
               <div className="relative">
                 <select
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none"
+                  className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none min-w-[160px]"
                 >
                   <option value="all">Semua Kategori</option>
                   <option value="maintenance">Perawatan</option>
@@ -269,7 +271,7 @@ const ReportsAnalytics = () => {
                                 style={{ width: `${percentage}%` }}
                               ></div>
                             </div>
-                            <span className="text-sm text-gray-600 dark:text-gray-400">
+                            <span className="text-sm text-gray-600 dark:text-gray-400 min-w-[45px]">
                               {percentage.toFixed(1)}%
                             </span>
                           </div>
@@ -286,14 +288,14 @@ const ReportsAnalytics = () => {
         {selectedReport === "inventory" && (
           <div>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                 Performa Inventori
               </h3>
               <div className="relative">
                 <select
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none"
+                  className="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none min-w-[160px]"
                 >
                   <option value="all">Semua Kategori</option>
                   <option value="oil">Oli</option>

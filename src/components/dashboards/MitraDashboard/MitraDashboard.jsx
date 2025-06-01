@@ -1,9 +1,7 @@
 "use client";
 
-import { useState, useContext } from "react";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AuthContext } from "../../../context/AuthContext";
 import {
   FaHome,
   FaSignOutAlt,
@@ -14,45 +12,50 @@ import {
   FaShoppingCart,
   FaTools,
   FaBell,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 
 // Import components
 import MitraOverview from "./MitraOverview";
-// import ServicesManagement from "./";
-// import TransactionsManagement from "./";
+import ServicesManagement from "./ServicesManagement";
+import TransactionsManagement from "./TransactiosManagement";
 import BusinessProfile from "./BusinessProfile";
 import ReportsAnalytics from "./ReportsAnalytics";
 import MultiUserManagement from "./MultiUserManagement";
 
 const MitraDashboard = () => {
-  const { user, logout } = useContext(AuthContext);
-  const location = useLocation();
+  const [currentPage, setCurrentPage] = useState("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const user = { name: "Mitra Bengkel" }; // Mock user data
 
   const sidebarItems = [
-    { name: "Overview", path: "/mitra-dashboard", icon: <FaHome /> },
-    {
-      name: "Layanan & Produk",
-      path: "/mitra-dashboard/services",
-      icon: <FaTools />,
-    },
-    {
-      name: "Transaksi",
-      path: "/mitra-dashboard/transactions",
-      icon: <FaShoppingCart />,
-    },
-    {
-      name: "Profil Bisnis",
-      path: "/mitra-dashboard/business",
-      icon: <FaStore />,
-    },
-    {
-      name: "Laporan",
-      path: "/mitra-dashboard/reports",
-      icon: <FaChartLine />,
-    },
-    { name: "Multi-User", path: "/mitra-dashboard/users", icon: <FaUsers /> },
+    { name: "Overview", id: "overview", icon: <FaHome /> },
+    { name: "Layanan & Produk", id: "services", icon: <FaTools /> },
+    { name: "Transaksi", id: "transactions", icon: <FaShoppingCart /> },
+    { name: "Profil Bisnis", id: "business", icon: <FaStore /> },
+    { name: "Laporan", id: "reports", icon: <FaChartLine /> },
+    { name: "Multi-User", id: "users", icon: <FaUsers /> },
   ];
+
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case "overview":
+        return <MitraOverview />;
+      case "services":
+        return <ServicesManagement />;
+      case "transactions":
+        return <TransactionsManagement />;
+      case "business":
+        return <BusinessProfile />;
+      case "reports":
+        return <ReportsAnalytics />;
+      case "users":
+        return <MultiUserManagement />;
+      default:
+        return <MitraOverview />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex">
@@ -63,7 +66,7 @@ const MitraDashboard = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 border-r border-gray-200 dark:border-gray-700`}
       >
         {/* Logo Header */}
-        <div className="flex items-center justify-center h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800">
+        <div className="flex items-center justify-between h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800 px-6">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
               <span className="text-orange-600 font-bold text-xl">GB</span>
@@ -73,6 +76,12 @@ const MitraDashboard = () => {
               <p className="text-orange-100 text-sm">Mitra Panel</p>
             </div>
           </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden text-white hover:text-orange-200 transition-colors"
+          >
+            <FaTimes className="w-6 h-6" />
+          </button>
         </div>
 
         {/* User Info */}
@@ -93,26 +102,28 @@ const MitraDashboard = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="mt-6 px-4">
+        <nav className="mt-6 px-4 flex-1">
           {sidebarItems.map((item, index) => (
-            <Link
+            <button
               key={index}
-              to={item.path}
-              className={`flex items-center px-4 py-3 mb-2 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200 rounded-xl group ${
-                location.pathname === item.path
+              onClick={() => {
+                setCurrentPage(item.id);
+                setSidebarOpen(false);
+              }}
+              className={`w-full flex items-center px-4 py-3 mb-2 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200 rounded-xl group ${
+                currentPage === item.id
                   ? "bg-orange-50 dark:bg-gray-700 text-orange-600 dark:text-orange-400 shadow-md"
                   : ""
               }`}
-              onClick={() => setSidebarOpen(false)}
             >
               <span className="mr-4 text-lg group-hover:scale-110 transition-transform duration-200">
                 {item.icon}
               </span>
               <span className="font-medium">{item.name}</span>
-              {location.pathname === item.path && (
+              {currentPage === item.id && (
                 <div className="ml-auto w-2 h-2 bg-orange-600 rounded-full"></div>
               )}
-            </Link>
+            </button>
           ))}
         </nav>
 
@@ -142,11 +153,8 @@ const MitraDashboard = () => {
         </div>
 
         {/* Logout Button */}
-        <div className="absolute bottom-0 w-full p-4">
-          <button
-            onClick={logout}
-            className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group"
-          >
+        <div className="p-4">
+          <button className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group">
             <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
             <span className="font-medium">Keluar</span>
           </button>
@@ -157,28 +165,16 @@ const MitraDashboard = () => {
       <div className="flex-1 lg:ml-0">
         {/* Header */}
         <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40">
-          <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-4">
             <div className="flex items-center">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
                 className="lg:hidden p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
+                <FaBars className="w-6 h-6" />
               </button>
               <div className="ml-4 lg:ml-0">
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
                   Dashboard Mitra
                 </h1>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -202,16 +198,7 @@ const MitraDashboard = () => {
         </header>
 
         {/* Content */}
-        <main className="p-6">
-          <Routes>
-            <Route path="/" element={<MitraOverview />} />
-            {/* <Route path="/services" element={<ServicesManagement />} /> */}
-            {/* <Route path="/transactions" element={<TransactionsManagement />} /> */}
-            <Route path="/business" element={<BusinessProfile />} />
-            <Route path="/reports" element={<ReportsAnalytics />} />
-            <Route path="/users" element={<MultiUserManagement />} />
-          </Routes>
-        </main>
+        <main className="p-4 sm:p-6">{renderCurrentPage()}</main>
       </div>
 
       {/* Overlay for mobile */}
