@@ -16,9 +16,9 @@ import "aos/dist/aos.css";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import KasirDashboard from "./components/dashboards/KasirDashboard";
-import AdminDashboard from "./components/dashboards/AdminDashboard";
+import AdminDashboard from "./components/dashboards/AdminDashboard/AdminDashboard";
 import UserDashboard from "./components/dashboards/UserDashboard";
-import MitraDashboard from "./components/dashboards/MitraDashboard/MitraDashboard.jsx";
+import MitraDashboard from "./components/dashboards/MitraDashboard/MitraDashboard";
 
 import About from "./components/About";
 import Promo from "./components/Promo";
