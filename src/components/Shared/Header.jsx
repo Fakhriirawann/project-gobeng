@@ -40,10 +40,15 @@ const Header = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 bg-orange-400 dark:bg-orange-400 rounded-xl flex items-center justify-center"
+              className="w-12 h-12  rounded-xl flex items-center justify-center overflow-hidden"
             >
-              <span className="text-white font-bold text-xl">GB</span>
+              <img
+                src="/icon.png"
+                alt="Logo"
+                className="w-full h-full object-cover scale-170"
+              />
             </motion.div>
+
             <span className="text-2xl font-bold text-orange-400 dark:text-orange-400">
               GoBeng
             </span>
