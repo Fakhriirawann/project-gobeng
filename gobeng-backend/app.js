@@ -8,22 +8,54 @@ app.use(express.json());
 
 // Dummy user database
 const users = [
-  { email: "kasir@gobeng.com", password: "kasir123", role: "kasir" },
-  { email: "admin@gobeng.com", password: "admin123", role: "admin" },
-  { email: "user@gobeng.com", password: "user123", role: "user" },
+  {
+    email: "kasir@gobeng.com",
+    password: "kasir123",
+    role: "kasir",
+    name: "Kasir GoBeng",
+  },
+  {
+    email: "admin@gobeng.com",
+    password: "admin123",
+    role: "admin",
+    name: "Admin GoBeng",
+  },
+  {
+    email: "user@gobeng.com",
+    password: "user123",
+    role: "user",
+    name: "User GoBeng",
+  },
 ];
+
+// Simulasi penyimpanan user login (untuk demo saja)
+let currentUser = null;
 
 // Login route
 app.post("/api/auth/login", (req, res) => {
   const { email, password } = req.body;
   const user = users.find((u) => u.email === email && u.password === password);
 
-  if (!user) return res.status(401).json({ message: "Login gagal" });
+  if (!user) {
+    return res.status(401).json({ message: "Login gagal" });
+  }
 
-  res.json({ message: "Login sukses", user });
+  currentUser = user;
+  const token = "dummy-token"; // Bisa kamu ganti dengan JWT nanti
+
+  res.json({ message: "Login sukses", user, token });
 });
 
-// Run server
+// Get current user
+app.get("/api/auth/me", (req, res) => {
+  if (!currentUser) {
+    return res.status(401).json({ message: "Belum login" });
+  }
+
+  res.json(currentUser);
+});
+
+// Jalankan server
 app.listen(PORT, () => {
   console.log(`GoBeng API running on http://localhost:${PORT}`);
 });
