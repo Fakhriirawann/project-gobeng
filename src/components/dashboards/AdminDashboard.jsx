@@ -80,7 +80,9 @@ const AdminDashboard = ({ user, onLogout }) => {
             <h1 className="text-2xl font-bold text-orange-400">
               Dashboard Admin
             </h1>
-            <p className="text-gray-600">Selamat datang, {user?.name || "Admin"}</p>
+            <p className="text-gray-600">
+              Selamat datang, {user?.name || "Admin"}
+            </p>
           </div>
           <button
             onClick={onLogout}
@@ -163,7 +165,7 @@ const AdminDashboard = ({ user, onLogout }) => {
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">
                   Total Pelanggan
                 </h3>
-                <p className="text-3xl font-bold text-purple-600">
+                <p className="text-3xl font-bold text-orange-600">
                   {stats.totalCustomers}
                 </p>
               </div>

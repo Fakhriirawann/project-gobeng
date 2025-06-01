@@ -26,6 +26,12 @@ const users = [
     role: "user",
     name: "User GoBeng",
   },
+  {
+    email: "mitra@gobeng.com",
+    password: "mitra123",
+    role: "mitra",
+    name: "Mitra GoBeng",
+  },
 ];
 
 // Simulasi penyimpanan user login (untuk demo saja)

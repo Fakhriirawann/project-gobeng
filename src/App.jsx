@@ -18,6 +18,8 @@ import Homepage from "./components/Homepage";
 import KasirDashboard from "./components/dashboards/KasirDashboard";
 import AdminDashboard from "./components/dashboards/AdminDashboard";
 import UserDashboard from "./components/dashboards/UserDashboard";
+import MitraDashboard from "./components/dashboards/MitraDashboard/MitraDashboard.jsx";
+
 import About from "./components/About";
 import Promo from "./components/Promo";
 import Contact from "./components/Contact";
@@ -28,8 +30,9 @@ import NotFound from "./components/NotFound";
 // Shared Components
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
-import ScrollToTop from "./components/Shared/ScrollToTop.jsx";
-import LoadingScreen from "./components/shared/LoadingScreen";
+
+import ScrollToTop from "./components/shared/ScrollToTop.jsx";
+import LoadingScreen from "./components/shared/LoadingScreen.jsx";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
@@ -116,6 +119,14 @@ function App() {
               }
             />
 
+            <Route
+              path="/mitra-dashboard/*"
+              element={
+                <ProtectedRoute role="mitra">
+                  <MitraDashboard />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/kasir-dashboard/*"
               element={

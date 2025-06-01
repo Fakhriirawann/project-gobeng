@@ -28,6 +28,8 @@ const Login = () => {
       // Redirect based on user role
       if (user.role === "kasir") {
         navigate("/kasir-dashboard");
+      } else if (user.role === "mitra") {
+        navigate("/mitra-dashboard");
       } else if (user.role === "admin") {
         navigate("/admin-dashboard");
       } else {
@@ -46,6 +48,9 @@ const Login = () => {
     let demoCredentials = {};
 
     switch (role) {
+      case "mitra":
+        demoCredentials = { email: "mitra@gobeng.com", password: "mitra123" };
+        break;
       case "kasir":
         demoCredentials = { email: "kasir@gobeng.com", password: "kasir123" };
         break;
@@ -105,6 +110,12 @@ const Login = () => {
               Demo Accounts:
             </h3>
             <div className="space-y-2 text-orange-800 dark:text-orange-200">
+              <button
+                onClick={() => handleDemoLogin("mitra")}
+                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
+              >
+                Mitra: mitra@gobeng.com / mitra123
+              </button>
               <button
                 onClick={() => handleDemoLogin("kasir")}
                 className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"

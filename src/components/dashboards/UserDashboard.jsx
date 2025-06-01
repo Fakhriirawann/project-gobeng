@@ -263,7 +263,7 @@ const DashboardHome = () => {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Reservasi Aktif
           </h3>
-          <p className="text-3xl font-bold text-purple-600">
+          <p className="text-3xl font-bold text-orange-600">
             {stats.upcomingReservations}
           </p>
         </motion.div>
@@ -1105,7 +1105,7 @@ const NotificationsPage = () => {
       case "info":
         return "border-l-orange-500 bg-orange-50 dark:bg-orange-400/20";
       case "booking":
-        return "border-l-purple-500 bg-purple-50 dark:bg-purple-900/20";
+        return "border-l-orange-500 bg-orange-50 dark:bg-orange-900/20";
       default:
         return "border-l-gray-500 bg-gray-50 dark:bg-gray-900/20";
     }

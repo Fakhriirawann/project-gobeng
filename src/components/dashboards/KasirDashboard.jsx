@@ -314,17 +314,17 @@ const KasirDashboardHome = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-gradient-to-r from-purple-500 to-purple-600 p-6 rounded-2xl shadow-lg text-white"
+          className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 rounded-2xl shadow-lg text-white"
         >
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-purple-100 text-sm font-medium mb-2">
+              <h3 className="text-orange-100 text-sm font-medium mb-2">
                 Pelanggan Hari Ini
               </h3>
               <p className="text-3xl font-bold">{todayStats.customers}</p>
-              <p className="text-purple-100 text-sm mt-1">+5% dari kemarin</p>
+              <p className="text-orange-100 text-sm mt-1">+5% dari kemarin</p>
             </div>
-            <div className="bg-purple-400 bg-opacity-30 p-3 rounded-xl">
+            <div className="bg-orange-400 bg-opacity-30 p-3 rounded-xl">
               <FaUser className="text-2xl" />
             </div>
           </div>
@@ -414,8 +414,8 @@ const KasirDashboardHome = () => {
           className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700"
         >
           <div className="text-center">
-            <div className="bg-purple-100 dark:bg-purple-900/30 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <FaChartLine className="text-2xl text-purple-600 dark:text-purple-400" />
+            <div className="bg-orange-100 dark:bg-orange-900/30 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <FaChartLine className="text-2xl text-orange-600 dark:text-orange-400" />
             </div>
             <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
               Laporan Penjualan
@@ -425,7 +425,7 @@ const KasirDashboardHome = () => {
             </p>
             <Link
               to="/kasir-dashboard/reports"
-              className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-xl hover:from-purple-700 hover:to-purple-800 transition-all duration-200 font-medium inline-flex items-center space-x-2"
+              className="bg-gradient-to-r from-orange-600 to-orange-700 text-white px-6 py-3 rounded-xl hover:from-orange-700 hover:to-orange-800 transition-all duration-200 font-medium inline-flex items-center space-x-2"
             >
               <FaChartLine className="text-sm" />
               <span>Lihat Laporan</span>
@@ -1487,8 +1487,8 @@ const ReportsPage = () => {
           </h3>
           <p className="text-3xl font-bold">{reportData.totalTransactions}</p>
         </div>
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 p-6 rounded-2xl shadow-lg text-white">
-          <h3 className="text-purple-100 text-sm font-medium mb-2">
+        <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 rounded-2xl shadow-lg text-white">
+          <h3 className="text-orange-100 text-sm font-medium mb-2">
             Total Pelanggan
           </h3>
           <p className="text-3xl font-bold">{reportData.totalCustomers}</p>
