@@ -46,7 +46,7 @@ const About = () => {
   return (
     <div className="py-16">
       {/* Hero Section */}
-      <section className="bg-blue-900 text-white py-16">
+      <section className="bg-orange-900 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-6">Tentang GoBeng</h1>
           <p className="text-xl max-w-3xl mx-auto">
@@ -63,7 +63,7 @@ const About = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-bold text-blue-900 mb-6">
+              <h2 className="text-3xl font-bold text-orange-900 mb-6">
                 Visi Kami
               </h2>
               <p className="text-gray-600 text-lg leading-relaxed">
@@ -73,7 +73,7 @@ const About = () => {
               </p>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-blue-900 mb-6">
+              <h2 className="text-3xl font-bold text-orange-900 mb-6">
                 Misi Kami
               </h2>
               <ul className="text-gray-600 text-lg space-y-3">
@@ -90,14 +90,14 @@ const About = () => {
       {/* Values */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
+          <h2 className="text-3xl font-bold text-center text-orange-900 mb-12">
             Nilai-Nilai Kami
           </h2>
           <div className="grid md:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="text-center">
                 <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-semibold text-blue-900 mb-3">
+                <h3 className="text-xl font-semibold text-orange-900 mb-3">
                   {value.title}
                 </h3>
                 <p className="text-gray-600">{value.description}</p>
@@ -110,7 +110,7 @@ const About = () => {
       {/* Team */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
+          <h2 className="text-3xl font-bold text-center text-orange-900 mb-12">
             Tim Kami
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -121,10 +121,10 @@ const About = () => {
                   alt={member.name}
                   className="w-48 h-48 rounded-full mx-auto mb-4 object-cover"
                 />
-                <h3 className="text-xl font-semibold text-blue-900 mb-2">
+                <h3 className="text-xl font-semibold text-orange-900 mb-2">
                   {member.name}
                 </h3>
-                <p className="text-yellow-600 font-medium mb-3">
+                <p className="text-orange-600 font-medium mb-3">
                   {member.position}
                 </p>
                 <p className="text-gray-600">{member.description}</p>
@@ -135,24 +135,24 @@ const About = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-16 bg-blue-900 text-white">
+      <section className="py-16 bg-orange-900 text-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <h3 className="text-4xl font-bold mb-2">50+</h3>
-              <p className="text-blue-200">Bengkel Mitra</p>
+              <p className="text-orange-200">Bengkel Mitra</p>
             </div>
             <div>
               <h3 className="text-4xl font-bold mb-2">10,000+</h3>
-              <p className="text-blue-200">Pelanggan Puas</p>
+              <p className="text-orange-200">Pelanggan Puas</p>
             </div>
             <div>
               <h3 className="text-4xl font-bold mb-2">25,000+</h3>
-              <p className="text-blue-200">Layanan Selesai</p>
+              <p className="text-orange-200">Layanan Selesai</p>
             </div>
             <div>
               <h3 className="text-4xl font-bold mb-2">4.8/5</h3>
-              <p className="text-blue-200">Rating Kepuasan</p>
+              <p className="text-orange-200">Rating Kepuasan</p>
             </div>
           </div>
         </div>

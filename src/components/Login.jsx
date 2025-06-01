@@ -67,9 +67,9 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-orange-900 to-orange-700 py-12 px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-blue-900 opacity-80"></div>
+        <div className="absolute inset-0 bg-orange-900 opacity-80"></div>
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-20"></div>
       </div>
 
@@ -87,11 +87,11 @@ const Login = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="w-20 h-20 bg-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-orange-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-2xl">GB</span>
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-400 mb-2">
+            <h1 className="text-3xl font-bold text-orange-900 dark:text-orange-400 mb-2">
               GoBeng
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
@@ -100,26 +100,26 @@ const Login = () => {
           </div>
 
           {/* Demo Accounts Info */}
-          <div className="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 mb-6 text-sm">
-            <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-2">
+          <div className="bg-orange-50 dark:bg-orange-900/30 rounded-lg p-4 mb-6 text-sm">
+            <h3 className="font-semibold text-orange-900 dark:text-orange-300 mb-2">
               Demo Accounts:
             </h3>
-            <div className="space-y-2 text-blue-800 dark:text-blue-200">
+            <div className="space-y-2 text-orange-800 dark:text-orange-200">
               <button
                 onClick={() => handleDemoLogin("kasir")}
-                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
                 Kasir: kasir@gobeng.com / kasir123
               </button>
               <button
                 onClick={() => handleDemoLogin("admin")}
-                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
                 Admin: admin@gobeng.com / admin123
               </button>
               <button
                 onClick={() => handleDemoLogin("user")}
-                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-blue-100 dark:hover:bg-blue-800/50 transition-colors"
+                className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
                 User: user@gobeng.com / user123
               </button>
@@ -139,7 +139,7 @@ const Login = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                  className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                   placeholder="Masukkan email Anda"
                   required
                 />
@@ -158,7 +158,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                  className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                   placeholder="Masukkan password Anda"
                   required
                 />
@@ -179,7 +179,7 @@ const Login = () => {
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-blue-900 dark:bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-orange-900 dark:bg-orange-700 text-white py-3 px-4 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -197,7 +197,7 @@ const Login = () => {
           <div className="mt-6 text-center">
             <Link
               to="/forgot-password"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm"
+              className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 text-sm"
             >
               Lupa password?
             </Link>
@@ -208,7 +208,7 @@ const Login = () => {
               Belum punya akun?{" "}
               <Link
                 to="/register"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+                className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium"
               >
                 Daftar Sekarang
               </Link>

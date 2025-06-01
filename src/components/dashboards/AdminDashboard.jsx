@@ -77,7 +77,7 @@ const AdminDashboard = ({ user, onLogout }) => {
       <header className="bg-white shadow-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-blue-900">
+            <h1 className="text-2xl font-bold text-orange-900">
               Dashboard Admin
             </h1>
             <p className="text-gray-600">Selamat datang, {user.name}</p>
@@ -99,8 +99,8 @@ const AdminDashboard = ({ user, onLogout }) => {
               onClick={() => setActiveTab("dashboard")}
               className={`px-6 py-3 font-medium whitespace-nowrap ${
                 activeTab === "dashboard"
-                  ? "text-blue-900 border-b-2 border-blue-900"
-                  : "text-gray-600 hover:text-blue-900"
+                  ? "text-orange-900 border-b-2 border-orange-900"
+                  : "text-gray-600 hover:text-orange-900"
               }`}
             >
               Dashboard
@@ -109,8 +109,8 @@ const AdminDashboard = ({ user, onLogout }) => {
               onClick={() => setActiveTab("inventory")}
               className={`px-6 py-3 font-medium whitespace-nowrap ${
                 activeTab === "inventory"
-                  ? "text-blue-900 border-b-2 border-blue-900"
-                  : "text-gray-600 hover:text-blue-900"
+                  ? "text-orange-900 border-b-2 border-orange-900"
+                  : "text-gray-600 hover:text-orange-900"
               }`}
             >
               Inventori
@@ -119,8 +119,8 @@ const AdminDashboard = ({ user, onLogout }) => {
               onClick={() => setActiveTab("transactions")}
               className={`px-6 py-3 font-medium whitespace-nowrap ${
                 activeTab === "transactions"
-                  ? "text-blue-900 border-b-2 border-blue-900"
-                  : "text-gray-600 hover:text-blue-900"
+                  ? "text-orange-900 border-b-2 border-orange-900"
+                  : "text-gray-600 hover:text-orange-900"
               }`}
             >
               Laporan Transaksi
@@ -129,8 +129,8 @@ const AdminDashboard = ({ user, onLogout }) => {
               onClick={() => setActiveTab("customers")}
               className={`px-6 py-3 font-medium whitespace-nowrap ${
                 activeTab === "customers"
-                  ? "text-blue-900 border-b-2 border-blue-900"
-                  : "text-gray-600 hover:text-blue-900"
+                  ? "text-orange-900 border-b-2 border-orange-900"
+                  : "text-gray-600 hover:text-orange-900"
               }`}
             >
               Data Pelanggan
@@ -155,7 +155,7 @@ const AdminDashboard = ({ user, onLogout }) => {
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">
                   Total Transaksi
                 </h3>
-                <p className="text-3xl font-bold text-blue-900">
+                <p className="text-3xl font-bold text-orange-900">
                   {stats.totalTransactions}
                 </p>
               </div>
@@ -220,7 +220,7 @@ const AdminDashboard = ({ user, onLogout }) => {
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold">Manajemen Inventori</h3>
-                <button className="bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-800">
+                <button className="bg-orange-900 text-white px-4 py-2 rounded-lg hover:bg-orange-800">
                   Tambah Barang
                 </button>
               </div>
@@ -260,7 +260,7 @@ const AdminDashboard = ({ user, onLogout }) => {
                         </td>
                         <td className="py-3">
                           <div className="flex space-x-2">
-                            <button className="text-blue-600 hover:text-blue-800">
+                            <button className="text-orange-600 hover:text-orange-800">
                               Edit
                             </button>
                             <button className="text-red-600 hover:text-red-800">
@@ -319,7 +319,7 @@ const AdminDashboard = ({ user, onLogout }) => {
                         <td className="py-3">{transaction.date}</td>
                         <td className="py-3">{transaction.kasir}</td>
                         <td className="py-3">
-                          <button className="text-blue-600 hover:text-blue-800">
+                          <button className="text-orange-600 hover:text-orange-800">
                             Detail
                           </button>
                         </td>
@@ -357,7 +357,7 @@ const AdminDashboard = ({ user, onLogout }) => {
                         <td className="py-3">{customer.totalVisits}</td>
                         <td className="py-3">
                           <div className="flex space-x-2">
-                            <button className="text-blue-600 hover:text-blue-800">
+                            <button className="text-orange-600 hover:text-orange-800">
                               Detail
                             </button>
                             <button className="text-green-600 hover:text-green-800">

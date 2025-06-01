@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-orange-900 to-orange-700 flex items-center justify-center px-4">
       <div className="text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -16,20 +16,20 @@ const NotFound = () => {
           <h2 className="text-3xl font-bold text-white mb-4">
             Halaman Tidak Ditemukan
           </h2>
-          <p className="text-blue-200 mb-8 max-w-md mx-auto">
+          <p className="text-orange-200 mb-8 max-w-md mx-auto">
             Maaf, halaman yang Anda cari tidak dapat ditemukan. Mungkin halaman
             telah dipindahkan atau dihapus.
           </p>
           <div className="space-x-4">
             <Link
               to="/"
-              className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition duration-300 inline-block"
+              className="bg-orange-400 text-orange-900 px-6 py-3 rounded-lg font-semibold hover:bg-orange-300 transition duration-300 inline-block"
             >
               Kembali ke Beranda
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-900 transition duration-300 inline-block"
+              className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-orange-900 transition duration-300 inline-block"
             >
               Hubungi Kami
             </Link>

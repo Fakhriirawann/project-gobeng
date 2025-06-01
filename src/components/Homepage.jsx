@@ -161,7 +161,7 @@ const Homepage = () => {
   return (
     <div>
       {/* Hero Section with Slider */}
-      <section className="relative bg-blue-900 text-white overflow-hidden">
+      <section className="relative bg-orange-900 text-white overflow-hidden">
         <div className="relative h-[600px] md:h-[700px]">
           {heroSlides.map((slide, index) => (
             <div
@@ -176,10 +176,10 @@ const Homepage = () => {
                   backgroundImage: `url('${slide.image}')`,
                 }}
               ></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-blue-900/80 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-900 via-orange-900/80 to-transparent"></div>
               <div className="relative container mx-auto px-4 h-full flex items-center z-10">
                 <div className="max-w-2xl">
-                  <h2 className="text-xl md:text-2xl font-medium mb-2 text-blue-300 animate-fade-in">
+                  <h2 className="text-xl md:text-2xl font-medium mb-2 text-orange-300 animate-fade-in">
                     {slide.subtitle}
                   </h2>
                   <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
@@ -190,7 +190,7 @@ const Homepage = () => {
                   </p>
                   <Link
                     to={slide.ctaLink}
-                    className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition duration-300 inline-block animate-fade-in btn-hover"
+                    className="bg-orange-400 text-orange-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-300 transition duration-300 inline-block animate-fade-in btn-hover"
                   >
                     {slide.cta}
                   </Link>
@@ -244,7 +244,7 @@ const Homepage = () => {
                 key={index}
                 onClick={() => setCurrentSlide(index)}
                 className={`w-3 h-3 rounded-full transition duration-300 ${
-                  index === currentSlide ? "bg-yellow-400" : "bg-white/50"
+                  index === currentSlide ? "bg-orange-400" : "bg-white/50"
                 }`}
               />
             ))}
@@ -255,9 +255,9 @@ const Homepage = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-6 -mt-20">
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
-              <div className="bg-blue-100 p-3 rounded-full mr-4">
+              <div className="bg-orange-100 p-3 rounded-full mr-4">
                 <svg
-                  className="w-8 h-8 text-blue-900"
+                  className="w-8 h-8 text-orange-900"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -287,9 +287,9 @@ const Homepage = () => {
             </div>
 
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
-              <div className="bg-blue-100 p-3 rounded-full mr-4">
+              <div className="bg-orange-100 p-3 rounded-full mr-4">
                 <svg
-                  className="w-8 h-8 text-blue-900"
+                  className="w-8 h-8 text-orange-900"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -319,9 +319,9 @@ const Homepage = () => {
             </div>
 
             <div className="bg-white rounded-lg shadow-xl p-6 flex items-center card-hover">
-              <div className="bg-blue-100 p-3 rounded-full mr-4">
+              <div className="bg-orange-100 p-3 rounded-full mr-4">
                 <svg
-                  className="w-8 h-8 text-blue-900"
+                  className="w-8 h-8 text-orange-900"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -349,7 +349,7 @@ const Homepage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
               Layanan Unggulan Kami
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -364,10 +364,10 @@ const Homepage = () => {
                 key={index}
                 className="text-center p-8 rounded-xl border border-gray-200 hover:shadow-xl transition duration-300 bg-white card-hover"
               >
-                <div className="bg-blue-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-orange-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <span className="text-4xl">{feature.icon}</span>
                 </div>
-                <h3 className="text-xl font-semibold text-blue-900 mb-3">
+                <h3 className="text-xl font-semibold text-orange-900 mb-3">
                   {feature.title}
                 </h3>
                 <p className="text-gray-600">{feature.description}</p>
@@ -381,7 +381,7 @@ const Homepage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
               Layanan Bengkel
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -400,7 +400,7 @@ const Homepage = () => {
                 <h3 className="font-semibold text-gray-800 mb-2">
                   {service.name}
                 </h3>
-                <p className="text-blue-900 text-sm font-medium">
+                <p className="text-orange-900 text-sm font-medium">
                   {service.price}
                 </p>
               </div>
@@ -410,7 +410,7 @@ const Homepage = () => {
           <div className="text-center mt-10">
             <Link
               to="/promo"
-              className="inline-flex items-center text-blue-900 font-semibold hover:text-blue-700 transition duration-200"
+              className="inline-flex items-center text-orange-900 font-semibold hover:text-orange-700 transition duration-200"
             >
               Lihat semua layanan
               <svg
@@ -434,7 +434,7 @@ const Homepage = () => {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
               Cara Kerja GoBeng
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -471,17 +471,17 @@ const Homepage = () => {
             ].map((item, index) => (
               <div key={index} className="text-center relative">
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-1/4 right-0 w-full h-1 bg-blue-200 z-0">
-                    <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 rotate-45 w-3 h-3 border-t-2 border-r-2 border-blue-200"></div>
+                  <div className="hidden md:block absolute top-1/4 right-0 w-full h-1 bg-orange-200 z-0">
+                    <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 rotate-45 w-3 h-3 border-t-2 border-r-2 border-orange-200"></div>
                   </div>
                 )}
-                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
+                <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 relative z-10">
                   <span className="text-3xl">{item.icon}</span>
                 </div>
-                <div className="bg-blue-900 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-bold">
+                <div className="bg-orange-900 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 font-bold">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-semibold text-blue-900 mb-2">
+                <h3 className="text-xl font-semibold text-orange-900 mb-2">
                   {item.title}
                 </h3>
                 <p className="text-gray-600">{item.description}</p>
@@ -492,24 +492,24 @@ const Homepage = () => {
       </section>
 
       {/* Stats Section */}
-      <section id="stats-section" className="py-20 bg-blue-900 text-white">
+      <section id="stats-section" className="py-20 bg-orange-900 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Dipercaya Ribuan Pelanggan
             </h2>
-            <p className="text-blue-200 max-w-2xl mx-auto">
+            <p className="text-orange-200 max-w-2xl mx-auto">
               Angka-angka yang membuktikan kualitas dan kepercayaan pelanggan
               terhadap layanan GoBeng
             </p>
           </div>
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {stats.map((stat, index) => (
-              <div key={index} className="bg-blue-800/50 p-6 rounded-lg">
+              <div key={index} className="bg-orange-800/50 p-6 rounded-lg">
                 <h3 className="text-4xl font-bold mb-2">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </h3>
-                <p className="text-blue-200">{stat.label}</p>
+                <p className="text-orange-200">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -520,7 +520,7 @@ const Homepage = () => {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-900 mb-4">
               Apa Kata Pelanggan Kami
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
@@ -541,7 +541,7 @@ const Homepage = () => {
                       key={i}
                       className={`text-xl ${
                         i < testimonial.rating
-                          ? "text-yellow-400"
+                          ? "text-orange-400"
                           : "text-gray-300"
                       }`}
                     >
@@ -572,25 +572,25 @@ const Homepage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-orange-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Siap Merasakan Layanan Terbaik?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-blue-200">
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-orange-200">
             Bergabunglah dengan ribuan pelanggan yang telah merasakan kemudahan
             dan kualitas layanan GoBeng
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/login"
-              className="bg-yellow-400 text-blue-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-300 transition duration-300 btn-hover"
+              className="bg-orange-400 text-orange-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-orange-300 transition duration-300 btn-hover"
             >
               Mulai Sekarang
             </Link>
             <Link
               to="/contact"
-              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-900 transition duration-300"
+              className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-orange-900 transition duration-300"
             >
               Hubungi Kami
             </Link>

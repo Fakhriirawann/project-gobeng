@@ -17,25 +17,21 @@
   * Variables defined here become available as utility classes.
   */
 @theme {
-  /* Font Families */
   --font-family-sans: "Inter", "Poppins", -apple-system, BlinkMacSystemFont,
     "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   --font-family-mono: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 
-  /* Custom Colors (based on your CSS) */
-  --color-blue-dark: #1e3a8a; /* For scrollbar thumb and gradient */
-  --color-blue-light: #3b82f6; /* For focus ring and gradient */
+  --color-orange-dark: #ea580c; /* For scrollbar thumb and gradient (replaces orange-dark) */
+  --color-orange-light: #f97316; /* For focus ring and gradient (replaces orange-light) */
   --color-gray-100: #f1f1f1; /* For scrollbar track */
-  --color-blue-hover: #1e40af; /* For scrollbar thumb hover */
+  --color-orange-hover: #c2410c; /* For scrollbar thumb hover (replaces orange-hover) */
 
-  /* Default Transition */
   --transition-property-all: all;
   --transition-duration-default: 0.2s;
   --transition-timing-function-default: ease-in-out;
 
-  /* Keyframes and Animations - Defined directly in @theme */
   @keyframes spin {
     from {
       transform: rotate(0deg);
@@ -63,10 +59,10 @@
   --shadow-card-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
 
   /* Gradients - Defined directly in @theme as custom background images */
-  --background-image-gradient-blue: linear-gradient(
-    135deg,
-    var(--color-blue-dark) 0%,
-    var(--color-blue-light) 100%
+  --background-image-gradient-orange: linear-gradient(
+    /* Renamed from gradient-orange */ 135deg,
+    var(--color-orange-dark) 0%,
+    var(--color-orange-light) 100%
   );
   --background-image-gradient-gold: linear-gradient(
     135deg,
@@ -111,12 +107,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: theme(--color-blue-dark);
+    background: theme(--color-orange-dark); /* Changed to orange-dark */
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: theme(--color-blue-hover);
+    background: theme(--color-orange-hover); /* Changed to orange-hover */
   }
 
   /* Smooth transitions - applied globally using CSS variables from @theme */
@@ -193,7 +189,7 @@
   input:focus,
   select:focus,
   textarea:focus {
-    @apply outline-none ring-2 ring-blue-500 border-transparent; /* Using Tailwind's default blue-500 for #3b82f6 */
+    @apply outline-none ring-2 ring-orange-500 border-transparent; /* Changed to orange-500 */
   }
 
   /* Responsive text (can be handled more natively by Tailwind's responsive breakpoints) */
@@ -206,8 +202,9 @@
 
   /* Gradient backgrounds using Tailwind's bg-[...] arbitrary value syntax */
   /* Or by creating new utility classes if used frequently */
-  .bg-gradient-blue {
-    background-image: theme(--background-image-gradient-blue);
+  .bg-gradient-orange {
+    /* Renamed from bg-gradient-orange */
+    background-image: theme(--background-image-gradient-orange);
   }
 
   .bg-gradient-gold {

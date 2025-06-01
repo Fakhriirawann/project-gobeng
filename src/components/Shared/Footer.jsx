@@ -40,7 +40,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-blue-900 dark:bg-gray-900 text-white">
+    <footer className="bg-orange-900 dark:bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -51,12 +51,12 @@ const Footer = () => {
             transition={{ duration: 0.5 }}
           >
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-yellow-400 rounded-xl flex items-center justify-center">
-                <span className="text-blue-900 font-bold text-xl">GB</span>
+              <div className="w-12 h-12 bg-orange-400 rounded-xl flex items-center justify-center">
+                <span className="text-orange-900 font-bold text-xl">GB</span>
               </div>
               <span className="text-2xl font-bold">GoBeng</span>
             </div>
-            <p className="text-blue-200 mb-6 leading-relaxed">
+            <p className="text-orange-200 mb-6 leading-relaxed">
               Solusi bengkel cerdas dengan teknologi modern untuk kepuasan
               pelanggan terbaik. Kami berkomitmen memberikan layanan terpercaya
               dan berkualitas tinggi.
@@ -66,7 +66,7 @@ const Footer = () => {
                 <motion.a
                   key={index}
                   href={social.href}
-                  className="text-blue-200 hover:text-white transition duration-200 text-xl"
+                  className="text-orange-200 hover:text-white transition duration-200 text-xl"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label={social.name}
@@ -90,7 +90,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.href}
-                    className="text-blue-200 hover:text-white transition duration-200 flex items-center group"
+                    className="text-orange-200 hover:text-white transition duration-200 flex items-center group"
                   >
                     <span className="group-hover:translate-x-1 transition-transform duration-200">
                       {link.name}
@@ -109,10 +109,10 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className="text-lg font-semibold mb-6">Layanan</h3>
-            <ul className="space-y-3 text-blue-200">
+            <ul className="space-y-3 text-orange-200">
               {services.map((service, index) => (
                 <li key={index} className="flex items-center">
-                  <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3"></span>
+                  <span className="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
                   {service}
                 </li>
               ))}
@@ -127,9 +127,9 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <h3 className="text-lg font-semibold mb-6">Kontak</h3>
-            <div className="space-y-4 text-blue-200">
+            <div className="space-y-4 text-orange-200">
               <div className="flex items-start space-x-3">
-                <FaMapMarkerAlt className="text-yellow-400 mt-1 flex-shrink-0" />
+                <FaMapMarkerAlt className="text-orange-400 mt-1 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Alamat</p>
                   <p>
@@ -138,21 +138,21 @@ const Footer = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <FaPhone className="text-yellow-400 flex-shrink-0" />
+                <FaPhone className="text-orange-400 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Telepon</p>
                   <p>(021) 1234-5678</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <FaEnvelope className="text-yellow-400 flex-shrink-0" />
+                <FaEnvelope className="text-orange-400 flex-shrink-0" />
                 <div>
                   <p className="font-medium">Email</p>
                   <p>info@gobeng.com</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <FaWhatsapp className="text-yellow-400 flex-shrink-0" />
+                <FaWhatsapp className="text-orange-400 flex-shrink-0" />
                 <div>
                   <p className="font-medium">WhatsApp</p>
                   <p>+62 812-3456-7890</p>
@@ -168,22 +168,22 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="border-t border-blue-800 mt-12 pt-8"
+          className="border-t border-orange-800 mt-12 pt-8"
         >
           <div className="max-w-md mx-auto text-center">
             <h3 className="text-lg font-semibold mb-4">
               Berlangganan Newsletter
             </h3>
-            <p className="text-blue-200 mb-6">
+            <p className="text-orange-200 mb-6">
               Dapatkan update terbaru tentang promo dan layanan kami
             </p>
             <div className="flex">
               <input
                 type="email"
                 placeholder="Masukkan email Anda"
-                className="flex-1 px-4 py-3 rounded-l-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                className="flex-1 px-4 py-3 rounded-l-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-400"
               />
-              <button className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-r-lg font-semibold hover:bg-yellow-300 transition duration-200">
+              <button className="bg-orange-400 text-orange-900 px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-300 transition duration-200">
                 Berlangganan
               </button>
             </div>
@@ -191,27 +191,27 @@ const Footer = () => {
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-blue-800 mt-12 pt-8">
+        <div className="border-t border-orange-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-blue-200 text-center md:text-left">
+            <p className="text-orange-200 text-center md:text-left">
               &copy; {currentYear} GoBeng. Semua hak cipta dilindungi.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link
                 to="/privacy"
-                className="text-blue-200 hover:text-white text-sm transition duration-200"
+                className="text-orange-200 hover:text-white text-sm transition duration-200"
               >
                 Kebijakan Privasi
               </Link>
               <Link
                 to="/terms"
-                className="text-blue-200 hover:text-white text-sm transition duration-200"
+                className="text-orange-200 hover:text-white text-sm transition duration-200"
               >
                 Syarat & Ketentuan
               </Link>
               <Link
                 to="/sitemap"
-                className="text-blue-200 hover:text-white text-sm transition duration-200"
+                className="text-orange-200 hover:text-white text-sm transition duration-200"
               >
                 Sitemap
               </Link>

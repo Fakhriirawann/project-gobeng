@@ -111,9 +111,9 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-blue-900 to-blue-700 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-orange-900 to-orange-700 py-12 px-4 sm:px-6 lg:px-8">
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-blue-900 opacity-80"></div>
+        <div className="absolute inset-0 bg-orange-900 opacity-80"></div>
         <div className="absolute inset-0 bg-[url('/placeholder.svg?height=1080&width=1920')] bg-cover bg-center opacity-20"></div>
       </div>
 
@@ -131,11 +131,11 @@ const Register = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="w-20 h-20 bg-blue-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-20 h-20 bg-orange-900 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <span className="text-white font-bold text-2xl">GB</span>
               </div>
             </motion.div>
-            <h1 className="text-3xl font-bold text-blue-900 dark:text-blue-400 mb-2">
+            <h1 className="text-3xl font-bold text-orange-900 dark:text-orange-400 mb-2">
               Daftar Akun
             </h1>
             <p className="text-gray-600 dark:text-gray-300">
@@ -150,7 +150,7 @@ const Register = () => {
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center ${
                     step >= 1
-                      ? "bg-blue-900 text-white"
+                      ? "bg-orange-900 text-white"
                       : "bg-gray-200 text-gray-600"
                   }`}
                 >
@@ -160,14 +160,14 @@ const Register = () => {
               </div>
               <div
                 className={`flex-1 h-1 mx-2 ${
-                  step >= 2 ? "bg-blue-900" : "bg-gray-200"
+                  step >= 2 ? "bg-orange-900" : "bg-gray-200"
                 }`}
               ></div>
               <div className="flex flex-col items-center">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center ${
                     step >= 2
-                      ? "bg-blue-900 text-white"
+                      ? "bg-orange-900 text-white"
                       : "bg-gray-200 text-gray-600"
                   }`}
                 >
@@ -200,7 +200,7 @@ const Register = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                         placeholder="Masukkan nama lengkap Anda"
                         required
                       />
@@ -220,7 +220,7 @@ const Register = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                         placeholder="Masukkan email Anda"
                         required
                       />
@@ -240,7 +240,7 @@ const Register = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                         placeholder="Masukkan nomor telepon Anda"
                         required
                       />
@@ -251,7 +251,7 @@ const Register = () => {
                 <motion.button
                   type="button"
                   onClick={nextStep}
-                  className="w-full mt-6 bg-blue-900 dark:bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200 font-medium"
+                  className="w-full mt-6 bg-orange-900 dark:bg-orange-700 text-white py-3 px-4 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -281,7 +281,7 @@ const Register = () => {
                         name="password"
                         value={formData.password}
                         onChange={handleChange}
-                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                         placeholder="Masukkan password Anda"
                         required
                       />
@@ -315,7 +315,7 @@ const Register = () => {
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleChange}
-                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
+                        className="w-full pl-10 px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent transition duration-200 bg-white dark:bg-gray-700 dark:text-white"
                         placeholder="Konfirmasi password Anda"
                         required
                       />
@@ -350,7 +350,7 @@ const Register = () => {
                   <motion.button
                     type="submit"
                     disabled={isLoading}
-                    className="w-1/2 bg-blue-900 dark:bg-blue-700 text-white py-3 px-4 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-1/2 bg-orange-900 dark:bg-orange-700 text-white py-3 px-4 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -373,7 +373,7 @@ const Register = () => {
               Sudah punya akun?{" "}
               <Link
                 to="/login"
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+                className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium"
               >
                 Masuk Sekarang
               </Link>

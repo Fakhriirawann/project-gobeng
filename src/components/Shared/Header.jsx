@@ -40,11 +40,11 @@ const Header = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-12 h-12 bg-blue-900 dark:bg-blue-700 rounded-xl flex items-center justify-center"
+              className="w-12 h-12 bg-orange-900 dark:bg-orange-700 rounded-xl flex items-center justify-center"
             >
               <span className="text-white font-bold text-xl">GB</span>
             </motion.div>
-            <span className="text-2xl font-bold text-blue-900 dark:text-blue-400">
+            <span className="text-2xl font-bold text-orange-900 dark:text-orange-400">
               GoBeng
             </span>
           </Link>
@@ -55,9 +55,9 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 transition duration-200 font-medium ${
+                className={`text-gray-700 dark:text-gray-300 hover:text-orange-900 dark:hover:text-orange-400 transition duration-200 font-medium ${
                   location.pathname === item.href
-                    ? "text-blue-900 dark:text-blue-400 font-semibold"
+                    ? "text-orange-900 dark:text-orange-400 font-semibold"
                     : ""
                 }`}
               >
@@ -84,7 +84,7 @@ const Header = () => {
               <div className="flex items-center space-x-4">
                 <Link
                   to={getDashboardLink()}
-                  className="text-blue-900 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                  className="text-orange-900 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium"
                 >
                   Dashboard
                 </Link>
@@ -103,13 +103,13 @@ const Header = () => {
               <div className="flex items-center space-x-3">
                 <Link
                   to="/login"
-                  className="text-blue-900 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium"
+                  className="text-orange-900 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium"
                 >
                   Masuk
                 </Link>
                 <Link
                   to="/register"
-                  className="bg-blue-900 dark:bg-blue-700 text-white px-6 py-2 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200"
+                  className="bg-orange-900 dark:bg-orange-700 text-white px-6 py-2 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
                 >
                   Daftar
                 </Link>
@@ -145,9 +145,9 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className={`block py-2 text-gray-700 dark:text-gray-300 hover:text-blue-900 dark:hover:text-blue-400 font-medium ${
+                    className={`block py-2 text-gray-700 dark:text-gray-300 hover:text-orange-900 dark:hover:text-orange-400 font-medium ${
                       location.pathname === item.href
-                        ? "text-blue-900 dark:text-blue-400 font-semibold"
+                        ? "text-orange-900 dark:text-orange-400 font-semibold"
                         : ""
                     }`}
                     onClick={() => setIsMenuOpen(false)}
@@ -178,7 +178,7 @@ const Header = () => {
                   <div className="space-y-3">
                     <Link
                       to={getDashboardLink()}
-                      className="block py-2 text-blue-900 dark:text-blue-400 font-medium"
+                      className="block py-2 text-orange-900 dark:text-orange-400 font-medium"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Dashboard
@@ -197,14 +197,14 @@ const Header = () => {
                   <div className="space-y-3">
                     <Link
                       to="/login"
-                      className="block py-2 text-blue-900 dark:text-blue-400 font-medium"
+                      className="block py-2 text-orange-900 dark:text-orange-400 font-medium"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Masuk
                     </Link>
                     <Link
                       to="/register"
-                      className="block py-2 text-blue-900 dark:text-blue-400 font-medium"
+                      className="block py-2 text-orange-900 dark:text-orange-400 font-medium"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Daftar

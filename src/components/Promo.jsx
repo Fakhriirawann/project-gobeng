@@ -91,7 +91,7 @@ const Promo = () => {
   return (
     <div className="py-16">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+      <section className="bg-gradient-to-r from-orange-900 to-orange-700 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-6">Promo & Penawaran Spesial</h1>
           <p className="text-xl max-w-2xl mx-auto">
@@ -104,7 +104,7 @@ const Promo = () => {
       {/* Current Promos */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
+          <h2 className="text-3xl font-bold text-center text-orange-900 mb-12">
             Promo Berlangsung
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -120,7 +120,7 @@ const Promo = () => {
                 />
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-blue-900">
+                    <h3 className="text-xl font-bold text-orange-900">
                       {promo.title}
                     </h3>
                     <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold">
@@ -141,7 +141,7 @@ const Promo = () => {
                       </ul>
                     </div>
                   </div>
-                  <button className="w-full bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition duration-200">
+                  <button className="w-full bg-orange-900 text-white py-2 rounded-lg hover:bg-orange-800 transition duration-200">
                     Gunakan Promo
                   </button>
                 </div>
@@ -154,7 +154,7 @@ const Promo = () => {
       {/* Service Packages */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
+          <h2 className="text-3xl font-bold text-center text-orange-900 mb-12">
             Paket Layanan Hemat
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -162,18 +162,18 @@ const Promo = () => {
               <div
                 key={index}
                 className={`bg-white rounded-lg shadow-lg p-6 relative ${
-                  pkg.popular ? "border-2 border-yellow-400" : "border"
+                  pkg.popular ? "border-2 border-orange-400" : "border"
                 }`}
               >
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-yellow-400 text-blue-900 px-4 py-1 rounded-full text-sm font-bold">
+                    <span className="bg-orange-400 text-orange-900 px-4 py-1 rounded-full text-sm font-bold">
                       TERPOPULER
                     </span>
                   </div>
                 )}
                 <div className="text-center mb-6">
-                  <h3 className="text-xl font-bold text-blue-900 mb-2">
+                  <h3 className="text-xl font-bold text-orange-900 mb-2">
                     {pkg.name}
                   </h3>
                   <div className="mb-2">
@@ -196,8 +196,8 @@ const Promo = () => {
                 <button
                   className={`w-full py-2 rounded-lg transition duration-200 ${
                     pkg.popular
-                      ? "bg-yellow-400 text-blue-900 hover:bg-yellow-300"
-                      : "bg-blue-900 text-white hover:bg-blue-800"
+                      ? "bg-orange-400 text-orange-900 hover:bg-orange-300"
+                      : "bg-orange-900 text-white hover:bg-orange-800"
                   }`}
                 >
                   Pilih Paket
@@ -209,7 +209,7 @@ const Promo = () => {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-blue-900 text-white">
+      <section className="py-16 bg-orange-900 text-white">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Jangan Lewatkan Promo Terbaru!
@@ -224,7 +224,7 @@ const Promo = () => {
               placeholder="Masukkan email Anda"
               className="flex-1 px-4 py-3 rounded-l-lg text-gray-900"
             />
-            <button className="bg-yellow-400 text-blue-900 px-6 py-3 rounded-r-lg font-semibold hover:bg-yellow-300 transition duration-200">
+            <button className="bg-orange-400 text-orange-900 px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-300 transition duration-200">
               Daftar
             </button>
           </div>

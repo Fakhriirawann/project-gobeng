@@ -47,10 +47,10 @@ const UserDashboard = () => {
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
-        <div className="flex items-center justify-center h-16 bg-blue-900 dark:bg-blue-800">
+        <div className="flex items-center justify-center h-16 bg-orange-900 dark:bg-orange-800">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center">
-              <span className="text-blue-900 font-bold text-lg">GB</span>
+            <div className="w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center">
+              <span className="text-orange-900 font-bold text-lg">GB</span>
             </div>
             <span className="text-white text-xl font-bold">GoBeng</span>
           </div>
@@ -61,9 +61,9 @@ const UserDashboard = () => {
             <Link
               key={index}
               to={item.path}
-              className={`flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-700 hover:text-blue-900 dark:hover:text-blue-400 transition-colors duration-200 ${
+              className={`flex items-center px-6 py-3 text-gray-700 dark:text-gray-300 hover:bg-orange-50 dark:hover:bg-gray-700 hover:text-orange-900 dark:hover:text-orange-400 transition-colors duration-200 ${
                 location.pathname === item.path
-                  ? "bg-blue-50 dark:bg-gray-700 text-blue-900 dark:text-blue-400 border-r-4 border-blue-900 dark:border-blue-400"
+                  ? "bg-orange-50 dark:bg-gray-700 text-orange-900 dark:text-orange-400 border-r-4 border-orange-900 dark:border-orange-400"
                   : ""
               }`}
               onClick={() => setSidebarOpen(false)}
@@ -180,9 +180,9 @@ const DashboardHome = () => {
     {
       title: "Reservasi Layanan",
       description: "Booking servis mudah dan cepat",
-      icon: <FaCalendarAlt className="text-3xl text-blue-900" />,
+      icon: <FaCalendarAlt className="text-3xl text-orange-900" />,
       link: "/user-dashboard/reservation",
-      color: "bg-blue-50 hover:bg-blue-100",
+      color: "bg-orange-50 hover:bg-orange-100",
     },
     {
       title: "Home Service",
@@ -203,7 +203,7 @@ const DashboardHome = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
       </div>
     );
   }
@@ -221,7 +221,7 @@ const DashboardHome = () => {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Total Layanan
           </h3>
-          <p className="text-3xl font-bold text-blue-900 dark:text-blue-400">
+          <p className="text-3xl font-bold text-orange-900 dark:text-orange-400">
             {stats.totalServices}
           </p>
         </motion.div>
@@ -235,7 +235,7 @@ const DashboardHome = () => {
           <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
             Poin Loyalitas
           </h3>
-          <p className="text-3xl font-bold text-yellow-600">
+          <p className="text-3xl font-bold text-orange-600">
             {stats.loyaltyPoints}
           </p>
         </motion.div>
@@ -333,8 +333,8 @@ const DashboardHome = () => {
                   item.status === "Selesai"
                     ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                     : item.status === "Terjadwal"
-                    ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                    : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                    ? "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                    : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
                 }`}
               >
                 {item.status}
@@ -440,7 +440,7 @@ const ReservationPage = () => {
               }
               className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 formData.serviceType === "workshop"
-                  ? "bg-blue-900 text-white"
+                  ? "bg-orange-900 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -451,7 +451,7 @@ const ReservationPage = () => {
               onClick={() => setFormData({ ...formData, serviceType: "home" })}
               className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                 formData.serviceType === "home"
-                  ? "bg-blue-900 text-white"
+                  ? "bg-orange-900 text-white"
                   : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -556,7 +556,7 @@ const ReservationPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-900 dark:bg-blue-700 text-white py-3 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-orange-900 dark:bg-orange-700 text-white py-3 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <div className="flex items-center justify-center">
@@ -589,13 +589,13 @@ const ReservationPage = () => {
                   </span>
                 </div>
                 <div className="flex items-center mb-2">
-                  <div className="flex text-yellow-400">
+                  <div className="flex text-orange-400">
                     {[...Array(5)].map((_, i) => (
                       <FaStar
                         key={i}
                         className={
                           i < Math.floor(workshop.rating)
-                            ? "text-yellow-400"
+                            ? "text-orange-400"
                             : "text-gray-300"
                         }
                       />
@@ -615,7 +615,7 @@ const ReservationPage = () => {
                       workshop: workshop.id.toString(),
                     })
                   }
-                  className="w-full bg-blue-900 dark:bg-blue-700 text-white py-2 rounded text-sm hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200"
+                  className="w-full bg-orange-900 dark:bg-orange-700 text-white py-2 rounded text-sm hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200"
                 >
                   Pilih Bengkel
                 </button>
@@ -690,7 +690,7 @@ const HistoryPage = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
       </div>
     );
   }
@@ -769,7 +769,7 @@ const HistoryPage = () => {
                           key={i}
                           className={`text-sm ${
                             i < service.rating
-                              ? "text-yellow-400"
+                              ? "text-orange-400"
                               : "text-gray-300"
                           }`}
                         />
@@ -778,7 +778,7 @@ const HistoryPage = () => {
                   </td>
                   <td className="py-3">
                     <div className="flex space-x-2">
-                      <button className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 text-sm">
+                      <button className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 text-sm">
                         <FaEye className="inline mr-1" />
                         Detail
                       </button>
@@ -918,7 +918,7 @@ const ProfilePage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="bg-blue-900 dark:bg-blue-700 text-white py-2 px-6 rounded-lg hover:bg-blue-800 dark:hover:bg-blue-600 transition duration-200 disabled:opacity-50"
+            className="bg-orange-900 dark:bg-orange-700 text-white py-2 px-6 rounded-lg hover:bg-orange-800 dark:hover:bg-orange-600 transition duration-200 disabled:opacity-50"
           >
             {loading ? "Menyimpan..." : "Simpan Perubahan"}
           </button>
@@ -1099,11 +1099,11 @@ const NotificationsPage = () => {
   const getNotificationColor = (type) => {
     switch (type) {
       case "reminder":
-        return "border-l-yellow-500 bg-yellow-50 dark:bg-yellow-900/20";
+        return "border-l-orange-500 bg-orange-50 dark:bg-orange-900/20";
       case "promo":
         return "border-l-green-500 bg-green-50 dark:bg-green-900/20";
       case "info":
-        return "border-l-blue-500 bg-blue-50 dark:bg-blue-900/20";
+        return "border-l-orange-500 bg-orange-50 dark:bg-orange-900/20";
       case "booking":
         return "border-l-purple-500 bg-purple-50 dark:bg-purple-900/20";
       default:
@@ -1114,7 +1114,7 @@ const NotificationsPage = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-900"></div>
       </div>
     );
   }
@@ -1126,7 +1126,7 @@ const NotificationsPage = () => {
           <h2 className="text-2xl font-bold">Notifikasi</h2>
           <button
             onClick={markAllAsRead}
-            className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium"
+            className="text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-300 font-medium"
           >
             Tandai Semua Dibaca
           </button>
@@ -1159,7 +1159,7 @@ const NotificationsPage = () => {
                       {notification.title}
                     </h3>
                     {!notification.read && (
-                      <span className="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span className="ml-2 w-2 h-2 bg-orange-500 rounded-full"></span>
                     )}
                   </div>
                   <p className="text-gray-700 dark:text-gray-300 mb-2">

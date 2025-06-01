@@ -57,7 +57,7 @@ const Contact = () => {
   return (
     <div className="py-16">
       {/* Hero Section */}
-      <section className="bg-blue-900 text-white py-16">
+      <section className="bg-orange-900 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold mb-6">Hubungi Kami</h1>
           <p className="text-xl max-w-2xl mx-auto">
@@ -73,7 +73,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="p-6">
               <div className="text-4xl mb-4">📍</div>
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">
+              <h3 className="text-lg font-semibold text-orange-900 mb-2">
                 Alamat
               </h3>
               <p className="text-gray-600">
@@ -84,7 +84,7 @@ const Contact = () => {
             </div>
             <div className="p-6">
               <div className="text-4xl mb-4">📞</div>
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">
+              <h3 className="text-lg font-semibold text-orange-900 mb-2">
                 Telepon
               </h3>
               <p className="text-gray-600">
@@ -95,7 +95,7 @@ const Contact = () => {
             </div>
             <div className="p-6">
               <div className="text-4xl mb-4">📧</div>
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">
+              <h3 className="text-lg font-semibold text-orange-900 mb-2">
                 Email
               </h3>
               <p className="text-gray-600">
@@ -106,7 +106,7 @@ const Contact = () => {
             </div>
             <div className="p-6">
               <div className="text-4xl mb-4">🕒</div>
-              <h3 className="text-lg font-semibold text-blue-900 mb-2">
+              <h3 className="text-lg font-semibold text-orange-900 mb-2">
                 Jam Operasional
               </h3>
               <p className="text-gray-600">
@@ -125,7 +125,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-blue-900 mb-6">
+              <h2 className="text-2xl font-bold text-orange-900 mb-6">
                 Kirim Pesan
               </h2>
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -138,7 +138,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -151,7 +151,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -164,7 +164,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -175,7 +175,7 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     required
                   >
                     <option value="">Pilih subjek</option>
@@ -195,14 +195,14 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="5"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     placeholder="Tulis pesan Anda di sini..."
                     required
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-blue-900 text-white py-3 px-4 rounded-lg hover:bg-blue-800 transition duration-200 font-medium"
+                  className="w-full bg-orange-900 text-white py-3 px-4 rounded-lg hover:bg-orange-800 transition duration-200 font-medium"
                 >
                   Kirim Pesan
                 </button>
@@ -211,7 +211,7 @@ const Contact = () => {
 
             {/* Map */}
             <div className="bg-white p-8 rounded-lg shadow-md">
-              <h2 className="text-2xl font-bold text-blue-900 mb-6">
+              <h2 className="text-2xl font-bold text-orange-900 mb-6">
                 Lokasi Kami
               </h2>
               <div className="bg-gray-200 h-64 rounded-lg mb-6 flex items-center justify-center">
@@ -219,7 +219,7 @@ const Contact = () => {
               </div>
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-900 mt-1">📍</span>
+                  <span className="text-orange-900 mt-1">📍</span>
                   <div>
                     <p className="font-medium">Kantor Pusat</p>
                     <p className="text-gray-600">
@@ -228,7 +228,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-900 mt-1">🚗</span>
+                  <span className="text-orange-900 mt-1">🚗</span>
                   <div>
                     <p className="font-medium">Akses Transportasi</p>
                     <p className="text-gray-600">
@@ -237,7 +237,7 @@ const Contact = () => {
                   </div>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-blue-900 mt-1">🅿️</span>
+                  <span className="text-orange-900 mt-1">🅿️</span>
                   <div>
                     <p className="font-medium">Parkir</p>
                     <p className="text-gray-600">
@@ -254,7 +254,7 @@ const Contact = () => {
       {/* Locations */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-blue-900 mb-12">
+          <h2 className="text-3xl font-bold text-center text-orange-900 mb-12">
             Bengkel Mitra Kami
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -263,20 +263,20 @@ const Contact = () => {
                 key={index}
                 className="border rounded-lg p-6 hover:shadow-lg transition duration-300"
               >
-                <h3 className="text-xl font-bold text-blue-900 mb-3">
+                <h3 className="text-xl font-bold text-orange-900 mb-3">
                   {location.name}
                 </h3>
                 <div className="space-y-3 text-gray-600">
                   <div className="flex items-start space-x-2">
-                    <span className="text-blue-900 mt-1">📍</span>
+                    <span className="text-orange-900 mt-1">📍</span>
                     <p>{location.address}</p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-blue-900">📞</span>
+                    <span className="text-orange-900">📞</span>
                     <p>{location.phone}</p>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-blue-900">🕒</span>
+                    <span className="text-orange-900">🕒</span>
                     <p>{location.hours}</p>
                   </div>
                   <div>
@@ -285,7 +285,7 @@ const Contact = () => {
                       {location.services.map((service, serviceIndex) => (
                         <span
                           key={serviceIndex}
-                          className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm"
+                          className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm"
                         >
                           {service}
                         </span>
@@ -293,7 +293,7 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-                <button className="w-full mt-4 bg-blue-900 text-white py-2 rounded-lg hover:bg-blue-800 transition duration-200">
+                <button className="w-full mt-4 bg-orange-900 text-white py-2 rounded-lg hover:bg-orange-800 transition duration-200">
                   Lihat Detail
                 </button>
               </div>
