@@ -54,7 +54,7 @@ const Promo = () => {
         "Berlaku untuk transaksi pertama",
         "Cashback dalam bentuk poin",
       ],
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/assets/CashBack.jpg",
     },
   ];
 
