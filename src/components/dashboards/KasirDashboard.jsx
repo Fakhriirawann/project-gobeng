@@ -74,7 +74,7 @@ const KasirDashboard = () => {
               className="w-32 h-32 object-contain"
             />
           </div>
-          <div className="pr-32">
+          <div className="pr-22">
             <span className="text-white text-2xl pr-12 font-bold">GoBeng</span>
             <p className="text-orange-100 text-sm">Kasir Panel</p>
           </div>
