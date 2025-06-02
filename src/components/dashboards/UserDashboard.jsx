@@ -74,10 +74,10 @@ const UserDashboard = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 border-r border-gray-200`}
       >
         {/* Logo Header */}
-        <div className="flex items-center justify-center h-20 bg-gradient-to-r from-orange-400 to-orange-500">
+        <div className="flex items-center h-20 bg-gradient-to-r from-orange-400 to-orange-500">
         <Link
           to="/"
-          className="flex items-center space-x-3 hover:opacity-90 transition duration-200"
+          className="flex items-center hover:opacity-90 transition duration-200"
         >
           <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
             <img
@@ -86,8 +86,8 @@ const UserDashboard = () => {
               className="w-32 h-32 object-contain"
             />
           </div>
-          <div>
-            <span className="text-white text-2xl font-bold">GoBeng</span>
+          <div className="pr-32">
+            <span className="text-white text-2xl pr-12 font-bold">GoBeng</span>
             <p className="text-orange-100 text-sm">User Panel</p>
           </div>
         </Link>
