@@ -86,7 +86,7 @@ const UserDashboard = () => {
               className="w-32 h-32 object-contain"
             />
           </div>
-          <div className="pr-32">
+          <div className="">
             <span className="text-white text-2xl pr-12 font-bold">GoBeng</span>
             <p className="text-orange-100 text-sm">User Panel</p>
           </div>
@@ -109,7 +109,7 @@ const UserDashboard = () => {
         {/* Navigation */}
         <nav className="mt-6 px-4">
           {sidebarItems.map((item, index) => (
-            <button
+            <Link
               key={index}
               onClick={() => {
                 setCurrentPage(item.key);
@@ -128,7 +128,7 @@ const UserDashboard = () => {
               {currentPage === item.key && (
                 <div className="ml-auto w-2 h-2 bg-orange-400 rounded-full"></div>
               )}
-            </button>
+            </Link>
           ))}
         </nav>
 
@@ -214,7 +214,7 @@ const UserDashboard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
