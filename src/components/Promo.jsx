@@ -12,7 +12,7 @@ const Promo = () => {
         "Minimal pembelian Rp 100.000",
         "Tidak dapat digabung dengan promo lain",
       ],
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/assets/oli.jpg",
     },
     {
       id: 2,
@@ -26,7 +26,7 @@ const Promo = () => {
         "Berlaku untuk mobil dan motor",
         "Garansi 6 bulan",
       ],
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/assets/TuneUp.jpg",
     },
     {
       id: 3,
@@ -40,7 +40,7 @@ const Promo = () => {
         "Minimal order Rp 200.000",
         "Berlaku untuk area Jabodetabek",
       ],
-      image: "/placeholder.svg?height=200&width=300",
+      image: "/assets/HomeService.jpg",
     },
     {
       id: 4,
@@ -63,7 +63,13 @@ const Promo = () => {
       name: "Paket Basic",
       price: "Rp 299.000",
       originalPrice: "Rp 399.000",
-      services: ["Ganti Oli", "Cek Tekanan Ban", "Cek Aki", "Cek Lampu"],
+      services: [
+        "Ganti Oli",
+        "Cek Tekanan Ban",
+        "Cek Aki",
+        "Cek Lampu",
+        "Cek Rem",
+      ],
       popular: false,
     },
     {
@@ -167,7 +173,7 @@ const Promo = () => {
               >
                 {pkg.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-orange-400 text-orange-400 px-4 py-1 rounded-full text-sm font-bold">
+                    <span className="bg-orange-400 text-white px-4 py-1 rounded-full text-sm font-bold">
                       TERPOPULER
                     </span>
                   </div>
@@ -196,7 +202,7 @@ const Promo = () => {
                 <button
                   className={`w-full py-2 rounded-lg transition duration-200 ${
                     pkg.popular
-                      ? "bg-orange-400 text-orange-400 hover:bg-orange-300"
+                      ? "bg-orange-400 text-white hover:bg-orange-800"
                       : "bg-orange-400 text-white hover:bg-orange-800"
                   }`}
                 >
@@ -209,7 +215,7 @@ const Promo = () => {
       </section>
 
       {/* Newsletter Signup */}
-      <section className="py-16 bg-orange-400 text-white">
+      <section className="py-16 bg-orange-400 text-white -mb-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">
             Jangan Lewatkan Promo Terbaru!
@@ -222,9 +228,9 @@ const Promo = () => {
             <input
               type="email"
               placeholder="Masukkan email Anda"
-              className="flex-1 px-4 py-3 rounded-l-lg text-gray-900"
+              className="flex-1 px-4 py-3 rounded-l-lg text-gray-900 ring-2 ring-white focus:ring-orange-600"
             />
-            <button className="bg-orange-400 text-orange-400 px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-300 transition duration-200">
+            <button className="bg-orange-500 text-white px-6 py-3 rounded-r-lg font-semibold hover:bg-orange-300 transition duration-200">
               Daftar
             </button>
           </div>

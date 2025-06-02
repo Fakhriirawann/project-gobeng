@@ -43,21 +43,21 @@ const Homepage = () => {
       title: "Reservasi Layanan",
       description:
         "Booking servis mudah dan cepat melalui aplikasi atau website",
-         imageUrl: "/assets/reservasi.jpeg",
+      imageUrl: "/assets/reservasi.jpeg",
     },
     {
       icon: "🏠",
       title: "Home Service",
       description:
         "Layanan servis langsung di rumah Anda tanpa perlu ke bengkel",
-         imageUrl: "/assets/HomeService.jpg",
+      imageUrl: "/assets/HomeService.jpg",
     },
     {
       icon: "🚨",
       title: "Darurat 24 Jam",
       description:
         "Bantuan darurat kapan saja dan dimana saja Anda membutuhkan",
-         imageUrl: "/assets/darurat.jpeg",
+      imageUrl: "/assets/darurat.jpeg",
     },
   ];
 
@@ -124,16 +124,6 @@ const Homepage = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
-    );
-  };
 
   const AnimatedCounter = ({ value, suffix }) => {
     const [count, setCount] = useState(0);
@@ -205,163 +195,173 @@ const Homepage = () => {
 
         {/* Floating Info Cards */}
         <div className="container mx-auto px-4 relative z-10">
-  <div className="grid md:grid-cols-3 gap-6 -mt-48 pb-6">
-    {/* Card 1 */}
-    <div
-      className="relative h-44 md:h-48 rounded-xl overflow-hidden shadow-xl group"
-      style={{
-        backgroundImage: "url('/assets/lokasi.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute inset-0 bg-white/50 z-10"></div>
-      <div className="absolute inset-0 flex items-center p-6 z-20 text-gray-800">
-        <div className="bg-orange-100 p-3 rounded-full mr-4">
-          <svg
-            className="w-8 h-8 text-orange-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-        </div>
-        <div>
-          <h3 className="font-semibold text-lg">Lokasi Strategis</h3>
-          <p className="text-sm text-gray-700">Bengkel mitra yang tersebar dan terus bertambah di seluruh Indonesia</p>
-        </div>
-      </div>
-    </div>
+          <div className="grid md:grid-cols-3 gap-6 -mt-52 pb-6 ">
+            {/* Card 1 */}
+            <div
+              className="relative h-28 md:h-32 rounded-xl overflow-hidden shadow-xl group card-hover"
+              style={{
+                backgroundImage: "url('/assets/lokasi.jpeg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="absolute inset-0 bg-white/50 z-10"></div>
+              <div className="absolute inset-0 flex items-center p-6 z-20 text-gray-800">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg
+                    className="w-8 h-8 text-orange-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Lokasi Strategis</h3>
+                  <p className="text-sm text-gray-700">
+                    Bengkel mitra yang tersebar dan terus bertambah di seluruh
+                    Indonesia
+                  </p>
+                </div>
+              </div>
+            </div>
 
-    {/* Card 2 */}
-    <div
-      className="relative h-44 md:h-48 rounded-xl overflow-hidden shadow-xl group"
-      style={{
-        backgroundImage: "url('/assets/teknisi.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute inset-0 bg-white/50 z-10"></div>
-      <div className="absolute inset-0 flex items-center p-6 z-20 text-gray-800">
-        <div className="bg-orange-100 p-3 rounded-full mr-4">
-          <svg
-            className="w-8 h-8 text-orange-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-            />
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-            />
-          </svg>
-        </div>
-        <div>
-          <h3 className="font-semibold text-lg">Teknisi Profesional</h3>
-          <p className="text-sm text-gray-700">Teknisi berpengalaman & bersertifikat</p>
-        </div>
-      </div>
-    </div>
+            {/* Card 2 */}
+            <div
+              className="relative h-28 md:h-32 rounded-xl overflow-hidden shadow-xl group card-hover"
+              style={{
+                backgroundImage: "url('/assets/teknisi.jpeg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="absolute inset-0 bg-white/50 z-10"></div>
+              <div className="absolute inset-0 flex items-center p-6 z-20 text-gray-800">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg
+                    className="w-8 h-8 text-orange-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Teknisi Profesional</h3>
+                  <p className="text-sm text-gray-700">
+                    Teknisi berpengalaman & bersertifikat
+                  </p>
+                </div>
+              </div>
+            </div>
 
-    {/* Card 3 */}
-    <div
-      className="relative h-44 md:h-48 rounded-xl overflow-hidden shadow-xl group"
-      style={{
-        backgroundImage: "url('/assets/cs.jpeg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      <div className="absolute inset-0 bg-white/50 z-10"></div>
-      <div className="absolute inset-0 flex items-center p-6 z-20 text-gray-800">
-        <div className="bg-orange-100 p-3 rounded-full mr-4">
-          <svg
-            className="w-8 h-8 text-orange-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            />
-          </svg>
+            {/* Card 3 */}
+            <div
+              className="relative h-28 md:h-32 rounded-xl overflow-hidden shadow-xl group card-hover"
+              style={{
+                backgroundImage: "url('/assets/cs.jpeg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="absolute inset-0 bg-white/50 z-10"></div>
+              <div className="absolute inset-0 flex items-center p-6 z-20 text-gray-800">
+                <div className="bg-orange-100 p-3 rounded-full mr-4">
+                  <svg
+                    className="w-8 h-8 text-orange-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Dukungan 24/7</h3>
+                  <p className="text-sm text-gray-700">
+                    Customer service siap membantu kapanpun
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h3 className="font-semibold text-lg">Dukungan 24/7</h3>
-          <p className="text-sm text-gray-700">Customer service siap membantu kapanpun</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
       </section>
 
       {/* Features Section */}
       <section className="py-20 bg-white">
-  <div className="container mx-auto px-4">
-    <div className="text-center mb-16">
-      <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
-        Layanan Unggulan Kami
-      </h2>
-      <p className="text-gray-600 max-w-2xl mx-auto">
-        GoBeng menyediakan berbagai layanan bengkel terbaik untuk
-        memastikan kendaraan Anda selalu dalam kondisi prima
-      </p>
-    </div>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-orange-400 mb-4">
+              Layanan Unggulan Kami
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              GoBeng menyediakan berbagai layanan bengkel terbaik untuk
+              memastikan kendaraan Anda selalu dalam kondisi prima
+            </p>
+          </div>
 
-    <div className="grid md:grid-cols-3 gap-8">
-      {features.map((feature, index) => (
-        <div
-          key={index}
-          className="relative rounded-xl overflow-hidden group border border-gray-200 hover:shadow-xl transition duration-300"
-        >
-          {/* Background Image + Gradient Overlay */}
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(0,0,0,0.6)), url(${feature.imageUrl})`,
-            }}
-          ></div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="relative rounded-xl overflow-hidden group border border-gray-200 hover:shadow-xl transition duration-300"
+              >
+                {/* Background Image + Gradient Overlay */}
+                <div className="absolute inset-0 bg-white/50 z-10"></div>
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `linear-gradient(to bottom, rgba(255, 255, 255, 0) 30%, rgba(0,0,0,0.6)), url(${feature.imageUrl})`,
+                  }}
+                ></div>
 
-          {/* Card Content */}
-          <div className="relative z-10 p-8 text-white text-center">
-            <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-3xl text-orange-500">{feature.icon}</span>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-            <p className="text-sm">{feature.description}</p>
+                {/* Card Content */}
+                <div className="relative z-10 p-8 text-white text-center">
+                  <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-3xl text-orange-500">
+                      {feature.icon}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm">{feature.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</section>
-
+      </section>
 
       {/* Services Section */}
       <section className="py-20 bg-gray-50">
