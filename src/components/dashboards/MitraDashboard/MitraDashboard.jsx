@@ -66,25 +66,24 @@ const MitraDashboard = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 border-r border-gray-200 dark:border-gray-700`}
       >
         {/* Logo Header */}
-        <div className="flex items-center justify-between h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800 pl-4">
-          <div className="">
-            <Link
-              to="/"
-              className="flex items-center hover:opacity-90 transition duration-200"
-            >
-              <div className="w-20 h-20 flex items-center justify-center overflow-hidden -ml-4 mt-2">
-                <img
-                  src="/icon.png"
-                  alt="GoBeng Icon"
-                  className="w-32 h-32 object-contain"
-                />
-              </div>
-              <div className="-ml-2">
-                <span className="text-white text-2xl font-bold">GoBeng</span>
-                <p className="text-orange-100 text-sm">Mitra Panel</p>
-              </div>
-            </Link>
-          </div>
+        <div className="flex items-center h-20 bg-gradient-to-r from-orange-400 to-orange-500">
+          <Link
+            to="/"
+            className="flex items-center hover:opacity-90 transition duration-200"
+          >
+            <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+              <img
+                src="/icon.png"
+                alt="GoBeng Icon"
+                className="w-32 h-32 object-contain"
+              />
+            </div>
+            <div className="">
+              <span className="text-white text-2xl font-bold">GoBeng</span>
+              <p className="text-orange-100 text-sm">Mitra Panel</p>
+            </div>
+          </Link>
+
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden text-white hover:text-orange-200 transition-colors"
