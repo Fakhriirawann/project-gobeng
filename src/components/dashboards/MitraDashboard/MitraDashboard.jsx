@@ -66,30 +66,29 @@ const MitraDashboard = () => {
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 border-r border-gray-200 dark:border-gray-700`}
       >
         {/* Logo Header */}
-        <div className="flex items-center justify-between h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800 px-6">
-        <div className="flex items-center justify-between h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800 px-6">
-        <Link
-          to="/"
-          className="flex items-center hover:opacity-90 transition duration-200"
-        >
-          <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
-            <img
-              src="/icon.png"
-              alt="GoBeng Icon"
-              className="w-32 h-32 object-contain"
-            />
-          </div>
-          <div className="pr-32">
-            <span className="text-white text-2xl pr-12 font-bold">GoBeng</span>
-            <p className="text-orange-100 text-sm">Mitra Panel</p>
-          </div>
-        </Link>
-          </div>
+        <div className="flex items-center h-20 bg-gradient-to-r from-orange-400 to-orange-500">
+          <Link
+            to="/"
+            className="flex items-center hover:opacity-90 transition duration-200"
+          >
+            <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+              <img
+                src="/icon.png"
+                alt="GoBeng Icon"
+                className="w-32 h-32 object-contain"
+              />
+            </div>
+            <div className="">
+              <span className="text-white text-2xl font-bold">GoBeng</span>
+              <p className="text-orange-100 text-sm">Mitra Panel</p>
+            </div>
+          </Link>
+
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden text-white hover:text-orange-200 transition-colors"
           >
-            <FaTimes className="w-6 h-6" />
+            <FaTimes className="w-6 h-6 mr-4" />
           </button>
         </div>
 
@@ -163,10 +162,12 @@ const MitraDashboard = () => {
 
         {/* Logout Button */}
         <div className="p-4">
-          <button className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group">
-            <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
-            <span className="font-medium">Keluar</span>
-          </button>
+          <Link to="/login">
+            <button className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group">
+              <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
+              <span className="font-medium">Keluar</span>
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -217,7 +218,7 @@ const MitraDashboard = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
             onClick={() => setSidebarOpen(false)}
           />
         )}
