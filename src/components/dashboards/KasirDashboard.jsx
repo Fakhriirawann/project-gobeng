@@ -30,6 +30,7 @@ import {
 
 const KasirDashboard = () => {
   const { user, logout } = useContext(AuthContext);
+
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -52,6 +53,11 @@ const KasirDashboard = () => {
     },
   ];
 
+  const handleLogout = () => {
+    logout();
+    setIsMenuOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex">
       {/* Sidebar */}
@@ -63,22 +69,24 @@ const KasirDashboard = () => {
         {/* Logo Header */}
 
         <div className="flex items-center justify-center h-20 bg-gradient-to-r from-orange-600 to-orange-700 dark:from-orange-700 dark:to-orange-800">
-        <Link
-          to="/"
-          className="flex items-center hover:opacity-90 transition duration-200"
-        >
-          <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
-            <img
-              src="/icon.png"
-              alt="GoBeng Icon"
-              className="w-32 h-32 object-contain"
-            />
-          </div>
-          <div className="pr-22">
-            <span className="text-white text-2xl pr-12 font-bold">GoBeng</span>
-            <p className="text-orange-100 text-sm">Kasir Panel</p>
-          </div>
-        </Link>
+          <Link
+            to="/"
+            className="flex items-center hover:opacity-90 transition duration-200"
+          >
+            <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+              <img
+                src="/icon.png"
+                alt="GoBeng Icon"
+                className="w-32 h-32 object-contain"
+              />
+            </div>
+            <div className="pr-22">
+              <span className="text-white text-2xl pr-12 font-bold">
+                GoBeng
+              </span>
+              <p className="text-orange-100 text-sm">Kasir Panel</p>
+            </div>
+          </Link>
         </div>
 
         {/* User Info */}
@@ -149,10 +157,15 @@ const KasirDashboard = () => {
 
         {/* Logout Button */}
         <div className="p-4">
-          <button className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group">
-            <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
-            <span className="font-medium">Keluar</span>
-          </button>
+          <Link to="/login">
+            <button
+              onClick={handleLogout}
+              className="flex items-center w-full px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 rounded-xl transition-all duration-200 group"
+            >
+              <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
+              <span className="font-medium">Keluar</span>
+            </button>
+          </Link>
         </div>
       </div>
 

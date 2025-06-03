@@ -1,5 +1,5 @@
 "use client";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -75,22 +75,24 @@ const UserDashboard = () => {
       >
         {/* Logo Header */}
         <div className="flex items-center h-20 bg-gradient-to-r from-orange-400 to-orange-500">
-        <Link
-          to="/"
-          className="flex items-center hover:opacity-90 transition duration-200"
-        >
-          <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
-            <img
-              src="/icon.png"
-              alt="GoBeng Icon"
-              className="w-32 h-32 object-contain"
-            />
-          </div>
-          <div className="pr-32">
-            <span className="text-white text-2xl pr-12 font-bold">GoBeng</span>
-            <p className="text-orange-100 text-sm">User Panel</p>
-          </div>
-        </Link>
+          <Link
+            to="/"
+            className="flex items-center hover:opacity-90 transition duration-200"
+          >
+            <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+              <img
+                src="/icon.png"
+                alt="GoBeng Icon"
+                className="w-32 h-32 object-contain"
+              />
+            </div>
+            <div className="pr-32">
+              <span className="text-white text-2xl pr-12 font-bold">
+                GoBeng
+              </span>
+              <p className="text-orange-100 text-sm">User Panel</p>
+            </div>
+          </Link>
         </div>
 
         {/* User Info */}
@@ -149,10 +151,12 @@ const UserDashboard = () => {
 
         {/* Logout Button */}
         <div className="p-4 mt-auto">
-          <button className="flex items-center w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group">
-            <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
-            <span className="font-medium">Keluar</span>
-          </button>
+          <Link to="/login">
+            <button className="flex items-center w-full px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group">
+              <FaSignOutAlt className="mr-3 group-hover:scale-110 transition-transform duration-200" />
+              <span className="font-medium">Keluar</span>
+            </button>
+          </Link>
         </div>
       </div>
 
