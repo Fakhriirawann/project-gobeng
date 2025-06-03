@@ -1,5 +1,6 @@
 "use client";
-
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../FireBase"; // sesuaikan dengan path sebenarnya
 import { useState, useEffect, useContext } from "react";
 import { saveTransaction } from "../../services/transactionService";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
@@ -571,100 +572,41 @@ const TransactionPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [paymentMethod, setPaymentMethod] = useState("cash");
+
   const [discount, setDiscount] = useState(0);
+  const [products, setProducts] = useState([]);
+  const [services, setServices] = useState([]);
+  const [loadingItems, setLoadingItems] = useState(true);
 
-  const services = [
-    {
-      id: 1,
-      name: "Ganti Oli Mesin",
-      price: 150000,
-      category: "service",
-      description: "Ganti oli mesin + filter oli",
-      duration: "30 menit",
-    },
-    {
-      id: 2,
-      name: "Tune Up Lengkap",
-      price: 300000,
-      category: "service",
-      description: "Tune up mesin lengkap",
-      duration: "2 jam",
-    },
-    {
-      id: 3,
-      name: "Servis AC Mobil",
-      price: 200000,
-      category: "service",
-      description: "Servis AC + isi freon",
-      duration: "1 jam",
-    },
-    {
-      id: 4,
-      name: "Ganti Ban",
-      price: 500000,
-      category: "service",
-      description: "Ganti ban + balancing",
-      duration: "45 menit",
-    },
-    {
-      id: 5,
-      name: "Servis Rem",
-      price: 250000,
-      category: "service",
-      description: "Ganti kampas rem + cek sistem",
-      duration: "1.5 jam",
-    },
-  ];
-
-  const products = [
-    {
-      id: 6,
-      name: "Oli Mesin 5W-30",
-      price: 75000,
-      category: "product",
-      stock: 25,
-      brand: "Castrol",
-      unit: "Liter",
-    },
-    {
-      id: 7,
-      name: "Filter Udara",
-      price: 50000,
-      category: "product",
-      stock: 15,
-      brand: "Denso",
-      unit: "Pcs",
-    },
-    {
-      id: 8,
-      name: "Busi NGK",
-      price: 25000,
-      category: "product",
-      stock: 30,
-      brand: "NGK",
-      unit: "Pcs",
-    },
-    {
-      id: 9,
-      name: "Kampas Rem",
-      price: 150000,
-      category: "product",
-      stock: 8,
-      brand: "Bendix",
-      unit: "Set",
-    },
-    {
-      id: 10,
-      name: "Aki Mobil",
-      price: 450000,
-      category: "product",
-      stock: 6,
-      brand: "GS Astra",
-      unit: "Pcs",
-    },
-  ];
-
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const productsSnapshot = await getDocs(collection(db, "products"));
+        const servicesSnapshot = await getDocs(collection(db, "services"));
+  
+        const loadedProducts = productsSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+  
+        const loadedServices = servicesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+  
+        setProducts(loadedProducts);
+        setServices(loadedServices);
+      } catch (error) {
+        console.error("Gagal memuat data dari Firestore:", error);
+      } finally {
+        setLoadingItems(false);
+      }
+    };
+  
+    fetchItems();
+  }, []);
   const allItems = [...services, ...products];
+
 
   const filteredItems = allItems.filter((item) => {
     const matchesSearch = item.name
@@ -674,7 +616,7 @@ const TransactionPage = () => {
       selectedCategory === "all" || item.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
+  
   useEffect(() => {
     calculateTotal();
   }, [cart, discount]);
