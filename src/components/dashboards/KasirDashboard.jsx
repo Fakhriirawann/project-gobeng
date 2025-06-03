@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
+import { saveTransaction } from "../../services/transactionService";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../context/AuthContext";
@@ -716,35 +717,38 @@ const TransactionPage = () => {
       toast.error("Keranjang kosong!");
       return;
     }
-
+  
     if (!customerName.trim()) {
       toast.error("Nama pelanggan harus diisi!");
       return;
     }
-
+  
     setLoading(true);
-
+  
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      const invoiceNumber = `INV-${Date.now()}`;
-      toast.success(`Transaksi berhasil! Invoice: ${invoiceNumber}`, {
-        position: "top-center",
-        autoClose: 5000,
+      await saveTransaction({
+        customerName,
+        phone: customerPhone,
+        cart,
+        discount,
+        paymentMethod
       });
-
-      // Reset form
+  
+      toast.success("Transaksi berhasil disimpan!");
+  
       setCart([]);
       setCustomerName("");
       setCustomerPhone("");
       setTotal(0);
       setDiscount(0);
     } catch (error) {
-      toast.error("Gagal memproses transaksi. Silakan coba lagi.");
+      console.error(error);
+      toast.error("Gagal menyimpan transaksi.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
