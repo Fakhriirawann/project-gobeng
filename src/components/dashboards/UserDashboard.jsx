@@ -1,7 +1,8 @@
 "use client";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { AuthContext } from "../../context/AuthContext";
 import {
   FaHome,
   FaCalendarAlt,
@@ -33,12 +34,7 @@ import {
 const UserDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("dashboard");
-  const [user] = useState({
-    name: "Ahmad Rizki",
-    email: "ahmad.rizki@email.com",
-    phone: "081234567890",
-    avatar: null,
-  });
+ const { user} = useContext(AuthContext);
 
   const sidebarItems = [
     { name: "Dashboard", key: "dashboard", icon: <FaHome /> },
@@ -103,7 +99,7 @@ const UserDashboard = () => {
             </div>
             <div>
               <p className="font-semibold text-gray-900">{user.name}</p>
-              <p className="text-sm text-gray-500">Pelanggan Premium</p>
+              <p className="text-sm text-gray-500">Pelanggan</p>
             </div>
           </div>
         </div>
