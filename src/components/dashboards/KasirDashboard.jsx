@@ -1,12 +1,18 @@
 "use client";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../FireBase"; // sesuaikan dengan path sebenarnya
+import { db } from "../../FireBase"; 
 import { useState, useEffect, useContext } from "react";
 import { saveTransaction } from "../../services/transactionService";
 import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../../context/AuthContext";
 import { toast } from "react-toastify";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit
+} from "firebase/firestore";
 import {
   FaHome,
   FaShoppingCart,
@@ -35,7 +41,6 @@ const KasirDashboard = () => {
 
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const sidebarItems = [
     { name: "Dashboard", path: "/kasir-dashboard", icon: <FaHome /> },
     {
@@ -53,6 +58,7 @@ const KasirDashboard = () => {
       path: "/kasir-dashboard/reports",
       icon: <FaChartLine />,
     },
+    
   ];
 
   const handleLogout = () => {
@@ -272,6 +278,29 @@ const KasirDashboardHome = () => {
       setLoading(false);
     }
   };
+  const [recentTransactions, setRecentTransactions] = useState([]);
+
+  useEffect(() => {
+    const fetchRecentTransactions = async () => {
+      try {
+        const trxQuery = query(
+          collection(db, "transactions"),
+          orderBy("createdAt", "desc"),
+          limit(5)
+        );
+        const snapshot = await getDocs(trxQuery);
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setRecentTransactions(data);
+      } catch (error) {
+        console.error("Gagal memuat transaksi:", error);
+      }
+    };
+  
+    fetchRecentTransactions();
+  }, []);
 
   if (loading) {
     return (
@@ -453,111 +482,83 @@ const KasirDashboardHome = () => {
 
       {/* Enhanced Recent Transactions */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.7 }}
-        className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700"
-      >
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-            Transaksi Terbaru
-          </h3>
-          <Link
-            to="/kasir-dashboard/reports"
-            className="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium text-sm"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: 0.7 }}
+  className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700"
+>
+  <div className="flex items-center justify-between mb-6">
+    <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+      Transaksi Terbaru
+    </h3>
+    <Link
+      to="/kasir-dashboard/reports"
+      className="text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium text-sm"
+    >
+      Lihat Semua
+    </Link>
+  </div>
+
+  <div className="overflow-x-auto">
+    <table className="w-full">
+      <thead>
+        <tr className="border-b border-gray-200 dark:border-gray-700">
+          <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">Invoice</th>
+          <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">Waktu</th>
+          <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">Pelanggan</th>
+          <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">Layanan</th>
+          <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">Total</th>
+          <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {recentTransactions.map((transaction, index) => (
+          <tr
+            key={transaction.id || index}
+            className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
           >
-            Lihat Semua
-          </Link>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 dark:border-gray-700">
-                <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">
-                  Invoice
-                </th>
-                <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">
-                  Waktu
-                </th>
-                <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">
-                  Pelanggan
-                </th>
-                <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">
-                  Layanan
-                </th>
-                <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">
-                  Total
-                </th>
-                <th className="text-left py-4 text-gray-700 dark:text-gray-300 font-semibold">
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                {
-                  invoice: "INV-001",
-                  time: "14:30",
-                  customer: "Budi Santoso",
-                  service: "Ganti Oli + Filter",
-                  total: 150000,
-                  status: "Selesai",
-                },
-                {
-                  invoice: "INV-002",
-                  time: "13:15",
-                  customer: "Sari Dewi",
-                  service: "Tune Up Lengkap",
-                  total: 300000,
-                  status: "Selesai",
-                },
-                {
-                  invoice: "INV-003",
-                  time: "12:00",
-                  customer: "Ahmad Rahman",
-                  service: "Servis AC Mobil",
-                  total: 200000,
-                  status: "Proses",
-                },
-              ].map((transaction, index) => (
-                <tr
-                  key={index}
-                  className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200"
-                >
-                  <td className="py-4">
-                    <span className="font-mono text-sm bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-                      {transaction.invoice}
-                    </span>
-                  </td>
-                  <td className="py-4 text-gray-600 dark:text-gray-400">
-                    {transaction.time}
-                  </td>
-                  <td className="py-4 text-gray-900 dark:text-white font-medium">
-                    {transaction.customer}
-                  </td>
-                  <td className="py-4 text-gray-600 dark:text-gray-400">
-                    {transaction.service}
-                  </td>
-                  <td className="py-4 text-gray-900 dark:text-white font-semibold">
-                    Rp {transaction.total.toLocaleString("id-ID")}
-                  </td>
-                  <td className="py-4">
-                    <span
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        transaction.status === "Selesai"
-                          ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                          : "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400"
-                      }`}
-                    >
-                      {transaction.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
+            <td className="py-4">
+              <span className="font-mono text-sm bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                {transaction.invoice || `INV-${transaction.id.slice(0, 5).toUpperCase()}`}
+              </span>
+            </td>
+            <td className="py-4 text-gray-600 dark:text-gray-400">
+              {transaction.createdAt
+                ? new Date(transaction.createdAt).toLocaleTimeString("id-ID", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                : "-"}
+            </td>
+            <td className="py-4 text-gray-900 dark:text-white font-medium">
+              {transaction.customerName || "—"}
+            </td>
+            <td className="py-4 text-gray-600 dark:text-gray-400">
+              {Array.isArray(transaction.items)
+                ? transaction.items.map((i) => i.name).join(", ")
+                : "-"}
+            </td>
+            <td className="py-4 text-gray-900 dark:text-white font-semibold">
+              Rp {transaction.total.toLocaleString("id-ID")}
+            </td>
+            <td className="py-4">
+              <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                Selesai
+              </span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    {recentTransactions.length === 0 && (
+      <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-4">
+        Belum ada transaksi.
+      </p>
+    )}
+  </div>
+</motion.div>
+
     </div>
   );
 };
