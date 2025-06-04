@@ -1,6 +1,16 @@
-"use client";
+import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../../../context/AuthContext";
+import {
+  doc,
+  updateDoc,
+  deleteDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "../../../FireBase";
 
-import { useState } from "react";
 import {
   FaUserPlus,
   FaEdit,
@@ -20,7 +30,7 @@ const MultiUserManagement = () => {
       id: 1,
       name: "Ahmad Kasir",
       email: "ahmad@bengkel.com",
-      role: "cashier",
+      role: "kasir",
       status: "active",
       lastLogin: "2024-01-15 08:30",
       permissions: ["transactions", "inventory_view"],
@@ -43,7 +53,7 @@ const MultiUserManagement = () => {
       id: 3,
       name: "Citra Kasir",
       email: "citra@bengkel.com",
-      role: "cashier",
+      role: "kasir",
       status: "inactive",
       lastLogin: "2024-01-10 14:22",
       permissions: ["transactions", "inventory_view"],
@@ -72,57 +82,89 @@ const MultiUserManagement = () => {
     name: "",
     email: "",
     password: "",
-    role: "cashier",
+    role: "kasir",
     status: "active",
     permissions: ["transactions"],
   });
 
-  const handleAddUser = () => {
+  const handleAddUser = async () => {
     if (!newUser.name || !newUser.email || !newUser.password) {
       alert("Mohon lengkapi semua field yang diperlukan");
       return;
     }
 
-    const id =
-      users.length > 0 ? Math.max(...users.map((user) => user.id)) + 1 : 1;
-    setUsers([...users, { ...newUser, id, lastLogin: "-" }]);
-    setNewUser({
-      name: "",
-      email: "",
-      password: "",
-      role: "cashier",
-      status: "active",
-      permissions: ["transactions"],
-    });
-    setShowAddModal(false);
+    try {
+      const userData = {
+        ...newUser,
+        lastLogin: "-",
+      };
+
+      const result = await register(userData); // ini akan otomatis simpan ke Firestore
+
+      setUsers((prev) => [...prev, result]);
+
+      // Reset form & tutup modal
+      setNewUser({
+        name: "",
+        email: "",
+        password: "",
+        role: "kasir",
+        status: "active",
+        permissions: ["transactions"],
+      });
+      setShowAddModal(false);
+    } catch (error) {
+      console.error("Gagal menambahkan user:", error.message);
+    }
   };
 
-  const handleEditUser = () => {
+  const handleEditUser = async () => {
     if (!selectedUser.name || !selectedUser.email) {
       alert("Mohon lengkapi semua field yang diperlukan");
       return;
     }
 
-    setUsers(
-      users.map((user) => (user.id === selectedUser.id ? selectedUser : user))
-    );
-    setShowEditModal(false);
+    try {
+      // Update ke Firestore
+      const userDocRef = doc(db, "users", selectedUser.id);
+      const { id, ...dataToUpdate } = selectedUser;
+      await updateDoc(userDocRef, dataToUpdate);
+
+      // Update lokal state
+      setUsers((prev) =>
+        prev.map((user) => (user.id === selectedUser.id ? selectedUser : user))
+      );
+
+      setShowEditModal(false);
+    } catch (error) {
+      console.error("Gagal update user:", error);
+      alert("Terjadi kesalahan saat menyimpan perubahan");
+    }
   };
 
-  const handleDeleteUser = () => {
-    setUsers(users.filter((user) => user.id !== selectedUser.id));
-    setShowDeleteModal(false);
+  const handleDeleteUser = async () => {
+    try {
+      const userDocRef = doc(db, "users", selectedUser.id);
+      await deleteDoc(userDocRef);
+
+      // Hapus dari state lokal
+      setUsers((prev) => prev.filter((user) => user.id !== selectedUser.id));
+
+      setShowDeleteModal(false);
+    } catch (error) {
+      console.error("Gagal menghapus user:", error);
+      alert("Terjadi kesalahan saat menghapus user");
+    }
   };
 
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
       user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesRole = roleFilter === "all" || user.role === roleFilter;
     const matchesStatus =
       statusFilter === "all" || user.status === statusFilter;
 
-    return matchesSearch && matchesRole && matchesStatus;
+    return matchesSearch && matchesStatus;
   });
 
   const getRoleBadgeClass = (role) => {
@@ -131,7 +173,7 @@ const MultiUserManagement = () => {
         return "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400";
       case "admin":
         return "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400";
-      case "cashier":
+      case "kasir":
         return "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400";
       case "mechanic":
         return "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400";
@@ -157,7 +199,7 @@ const MultiUserManagement = () => {
         return "Pemilik";
       case "admin":
         return "Admin";
-      case "cashier":
+      case "kasir":
         return "Kasir";
       case "mechanic":
         return "Mekanik";
@@ -205,11 +247,43 @@ const MultiUserManagement = () => {
       total: users.length,
       active: users.filter((u) => u.status === "active").length,
       admins: users.filter((u) => u.role === "admin").length,
-      cashiers: users.filter((u) => u.role === "cashier").length,
+      kasirs: users.filter((u) => u.role === "kasir").length,
     };
   };
 
   const stats = getStatsData();
+
+  const { register } = useContext(AuthContext);
+
+  const formatDateTime = (isoString) => {
+    if (!isoString || isoString === "-") return "-";
+    const date = new Date(isoString);
+    return date.toLocaleString("id-ID", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  useEffect(() => {
+    const fetchKasirUsers = async () => {
+      try {
+        const q = query(collection(db, "users"), where("role", "==", "kasir"));
+        const snapshot = await getDocs(q);
+        const kasirUsers = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setUsers(kasirUsers);
+      } catch (error) {
+        console.error("Gagal mengambil data kasir:", error);
+      }
+    };
+
+    fetchKasirUsers();
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -287,7 +361,7 @@ const MultiUserManagement = () => {
             <div>
               <p className="text-sm text-gray-600 dark:text-gray-400">Kasir</p>
               <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                {stats.cashiers}
+                {stats.kasirs}
               </p>
             </div>
             <div className="p-3 bg-orange-100 dark:bg-orange-900/30 rounded-lg">
@@ -314,6 +388,7 @@ const MultiUserManagement = () => {
             <div className="relative">
               <FaFilter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
               <select
+                hidden
                 value={roleFilter}
                 onChange={(e) => setRoleFilter(e.target.value)}
                 className="pl-12 pr-8 py-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white appearance-none min-w-[140px]"
@@ -321,7 +396,7 @@ const MultiUserManagement = () => {
                 <option value="all">Semua Peran</option>
                 <option value="owner">Pemilik</option>
                 <option value="admin">Admin</option>
-                <option value="cashier">Kasir</option>
+                <option value="kasir">Kasir</option>
                 <option value="mechanic">Mekanik</option>
               </select>
             </div>
@@ -398,7 +473,7 @@ const MultiUserManagement = () => {
                     </span>
                   </td>
                   <td className="py-4 px-6 text-gray-600 dark:text-gray-400">
-                    {user.lastLogin}
+                    {formatDateTime(user.lastLogin)}
                   </td>
                   <td className="py-4 px-6">
                     <div className="flex space-x-2">
@@ -569,7 +644,7 @@ const AddUserModal = ({
               onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             >
-              <option value="cashier">Kasir</option>
+              <option value="kasir">Kasir</option>
               <option value="admin">Admin</option>
               <option value="mechanic">Mekanik</option>
             </select>
@@ -786,7 +861,7 @@ const EditUserModal = ({ user, setUser, onClose, onSave }) => {
               onChange={(e) => setUser({ ...user, role: e.target.value })}
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             >
-              <option value="cashier">Kasir</option>
+              <option value="kasir">Kasir</option>
               <option value="admin">Admin</option>
               <option value="mechanic">Mekanik</option>
             </select>
