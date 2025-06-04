@@ -90,35 +90,27 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateStep2()) return;
 
-    if (!validateStep2()) {
-      return;
+    const userData = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      password: formData.password,
+      role: formData.role,
+    };
+
+    if (formData.role === "mitra") {
+      userData.bengkelName = formData.bengkelName;
+      userData.address = formData.address;
+      userData.description = formData.description;
     }
 
-    setIsLoading(true);
-
     try {
-      let dataToSend = formData;
-
-      if (formData.role === "mitra") {
-        const fd = new FormData();
-        for (let key in formData) {
-          if (formData[key] !== null) {
-            fd.append(key, formData[key]);
-          }
-        }
-        dataToSend = fd;
-      }
-
-      await register(dataToSend);
-
-      // Redirect to login page after successful registration
+      await register(userData);
       navigate("/login");
     } catch (error) {
-      console.error("Registration error:", error);
-      // Error is already handled in AuthContext with toast
-    } finally {
-      setIsLoading(false);
+      console.error(error); // sudah ada toast di dalam AuthContext
     }
   };
 

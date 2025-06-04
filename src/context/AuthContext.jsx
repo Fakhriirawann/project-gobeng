@@ -9,6 +9,7 @@ import {
   getDocs,
   doc,
   updateDoc,
+  addDoc,
 } from "firebase/firestore";
 import { db } from "../firebase"; // pastikan file firebase.js menginisialisasi Firestore
 
