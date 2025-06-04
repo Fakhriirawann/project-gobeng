@@ -28,11 +28,11 @@ import Register from "./components/Register";
 import NotFound from "./components/NotFound";
 
 // Shared Components
-import Header from "./components/shared/Header";
-import Footer from "./components/shared/Footer";
+import Header from "./components/Shared/Header.jsx";
+import Footer from "./components/Shared/Footer";
 
-import ScrollToTop from "./components/shared/ScrollToTop.jsx";
-import LoadingScreen from "./components/shared/LoadingScreen.jsx";
+import ScrollToTop from "./components/Shared/ScrollToTop.jsx";
+import LoadingScreen from "./components/Shared/LoadingScreen.jsx";
 
 // Context
 import { AuthProvider } from "./context/AuthContext";
