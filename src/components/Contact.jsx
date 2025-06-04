@@ -32,22 +32,25 @@ const Contact = () => {
 
   const locations = [
     {
-      name: "GoBeng Kemang",
-      address: "Jl. Kemang Raya No. 123, Jakarta Selatan",
-      phone: "(021) 1234-5678",
+      name: "Bengkel Mobil Pemuda (BMP)",
+      image:"/assets/BMP.jpeg",
+      address: "Lrg. jambu No.669, Pipa Jaya, Kec. Kemuning, Kota Palembang, Sumatera Selatan 30961",
+      phone: "0813-6712-2511",
       hours: "Senin - Minggu: 08:00 - 20:00",
-      services: ["Servis Umum", "Home Service", "Darurat 24 Jam"],
+      services: ["Servis Umum", "AC Service", "Darurat 24 Jam"],
     },
     {
-      name: "GoBeng Senayan",
-      address: "Jl. Senayan No. 456, Jakarta Pusat",
-      phone: "(021) 2345-6789",
+      name: "Cemerlang Racing Motor",
+      image:"/assets/cemerlang-racing.jpeg",
+      address: " Jl. R.A. Abusamah, Suka Bangun, Kec. Sukarami, Kota Palembang, Sumatera Selatan 30961",
+      phone: " 0812-8265-4110",
       hours: "Senin - Minggu: 08:00 - 20:00",
-      services: ["Servis Umum", "Tune Up Specialist", "AC Service"],
+      services: ["Servis Umum", "Tune Up Specialist", "Home Service"],
     },
     {
-      name: "GoBeng Blok M",
-      address: "Jl. Blok M No. 789, Jakarta Selatan",
+      name: "Jaya Abadi Motor Sport",
+      image:"/assets/jaya-abadi.jpeg",
+      address: " Jl. H. Abdul Rozak, Bukit Sangkal, Kec. Kalidoni, Kota Palembang, Sumatera Selatan 30163",
       phone: "(021) 3456-7890",
       hours: "Senin - Minggu: 08:00 - 20:00",
       services: ["Servis Umum", "Body Repair", "Detailing"],
@@ -252,55 +255,74 @@ const Contact = () => {
       </section>
 
       {/* Locations */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-orange-400 mb-12">
-            Bengkel Mitra Kami
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {locations.map((location, index) => (
-              <div
-                key={index}
-                className="border rounded-lg p-6 hover:shadow-lg transition duration-300"
-              >
-                <h3 className="text-xl font-bold text-orange-400 mb-3">
-                  {location.name}
-                </h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start space-x-2">
-                    <span className="text-orange-400 mt-1">📍</span>
-                    <p>{location.address}</p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-orange-400">📞</span>
-                    <p>{location.phone}</p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <span className="text-orange-400">🕒</span>
-                    <p>{location.hours}</p>
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-700 mb-2">Layanan:</p>
-                    <div className="flex flex-wrap gap-2">
-                      {location.services.map((service, serviceIndex) => (
-                        <span
-                          key={serviceIndex}
-                          className="bg-orange-100 text-orange-800 px-2 py-1 rounded text-sm"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <button className="w-full mt-4 bg-orange-400 text-white py-2 rounded-lg hover:bg-orange-800 transition duration-200">
-                  Lihat Detail
-                </button>
+  <section className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-14">
+      <h2 className="text-4xl font-bold text-gray-800 mb-3">
+        Bengkel Mitra Kami
+      </h2>
+      <p className="text-gray-500 max-w-xl mx-auto">
+        Temukan bengkel terpercaya dengan layanan profesional di dekat Anda
+      </p>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      {locations.map((location, index) => (
+        <div
+          key={index}
+          className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out overflow-hidden"
+        >
+          <div className="h-56 w-full">
+            <img
+              src={location.image}
+              alt={`Foto ${location.name}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+              {location.name}
+            </h3>
+            <div className="text-sm text-gray-500 space-y-2 mb-4">
+              <div className="flex gap-2">
+                <span>📍</span>
+                <p>{location.address}</p>
               </div>
-            ))}
+              <div className="flex gap-2">
+                <span>📞</span>
+                <p>{location.phone}</p>
+              </div>
+              <div className="flex gap-2">
+                <span>🕒</span>
+                <p>{location.hours}</p>
+              </div>
+            </div>
+            <div className="mb-4">
+              <p className="text-sm font-medium text-gray-700 mb-2">Layanan:</p>
+              <div className="flex flex-wrap gap-2">
+                {location.services.map((service, serviceIndex) => (
+                  <span
+                    key={serviceIndex}
+                    className="bg-orange-50 text-orange-600 text-xs px-3 py-1 rounded-full border border-orange-100"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <button className="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition font-medium text-sm">
+              Reservasi
+            </button>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
+
+
+
 
       {/* Emergency Contact */}
       <section className="py-16 bg-red-600 text-white">
