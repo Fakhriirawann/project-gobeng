@@ -10,7 +10,7 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../firebase"; // pastikan file firebase.js menginisialisasi Firestore
+import { db } from "../FireBase";
 
 export const AuthContext = createContext();
 
