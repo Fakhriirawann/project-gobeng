@@ -47,6 +47,12 @@ export const AuthProvider = ({ children }) => {
         throw new Error("Password salah");
       }
 
+      // ✅ Update lastLogin ke Firestore
+      const userDoc = doc(db, "users", docRef.id);
+      await updateDoc(userDoc, {
+        lastLogin: new Date().toISOString(),
+      });
+
       const finalUser = { id: docRef.id, ...userData };
 
       localStorage.setItem("gobeng_user", JSON.stringify(finalUser));
