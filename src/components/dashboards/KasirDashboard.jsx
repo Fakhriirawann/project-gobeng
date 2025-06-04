@@ -1036,77 +1036,13 @@ const InventoryPage = () => {
 
   const fetchInventory = async () => {
     try {
-      setTimeout(() => {
-        setInventory([
-          {
-            id: 1,
-            name: "Oli Mesin 5W-30",
-            stock: 25,
-            minStock: 10,
-            price: 75000,
-            category: "Oli",
-            brand: "Castrol",
-            unit: "Liter",
-            lastUpdated: "2024-01-15",
-          },
-          {
-            id: 2,
-            name: "Filter Udara",
-            stock: 15,
-            minStock: 5,
-            price: 50000,
-            category: "Filter",
-            brand: "Denso",
-            unit: "Pcs",
-            lastUpdated: "2024-01-14",
-          },
-          {
-            id: 3,
-            name: "Busi NGK",
-            stock: 30,
-            minStock: 15,
-            price: 25000,
-            category: "Busi",
-            brand: "NGK",
-            unit: "Pcs",
-            lastUpdated: "2024-01-13",
-          },
-          {
-            id: 4,
-            name: "Kampas Rem",
-            stock: 3,
-            minStock: 10,
-            price: 150000,
-            category: "Rem",
-            brand: "Bendix",
-            unit: "Set",
-            lastUpdated: "2024-01-12",
-          },
-          {
-            id: 5,
-            name: "Ban Michelin",
-            stock: 12,
-            minStock: 8,
-            price: 800000,
-            category: "Ban",
-            brand: "Michelin",
-            unit: "Pcs",
-            lastUpdated: "2024-01-11",
-          },
-          {
-            id: 6,
-            name: "Aki GS",
-            stock: 0,
-            minStock: 5,
-            price: 450000,
-            category: "Aki",
-            brand: "GS Astra",
-            unit: "Pcs",
-            lastUpdated: "2024-01-10",
-          },
-        ]);
-        setLoading(false);
-      }, 1000);
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const products = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setInventory(products);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching inventory:", error);
       setLoading(false);
@@ -1128,19 +1064,12 @@ const InventoryPage = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const getStockStatus = (stock, minStock) => {
+  const getStockStatus = (stock) => {
     if (stock <= 0)
       return {
         status: "Habis",
         color: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
         icon: <FaTimes className="text-xs" />,
-      };
-    if (stock <= minStock)
-      return {
-        status: "Stok Rendah",
-        color:
-          "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400",
-        icon: <FaExclamationTriangle className="text-xs" />,
       };
     return {
       status: "Tersedia",
@@ -1150,9 +1079,6 @@ const InventoryPage = () => {
     };
   };
 
-  const lowStockItems = inventory.filter(
-    (item) => item.stock <= item.minStock
-  ).length;
   const outOfStockItems = inventory.filter((item) => item.stock === 0).length;
 
   if (loading) {
@@ -1162,11 +1088,10 @@ const InventoryPage = () => {
       </div>
     );
   }
-
   return (
     <div className="space-y-6">
       {/* Inventory Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
           <div className="flex items-center justify-between">
             <div>
@@ -1179,22 +1104,6 @@ const InventoryPage = () => {
             </div>
             <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-xl">
               <FaBoxes className="text-orange-600 dark:text-orange-400" />
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                Stok Rendah
-              </p>
-              <p className="text-2xl font-bold text-orange-600 dark:text-orange-400">
-                {lowStockItems}
-              </p>
-            </div>
-            <div className="bg-orange-100 dark:bg-orange-900/30 p-3 rounded-xl">
-              <FaExclamationTriangle className="text-orange-600 dark:text-orange-400" />
             </div>
           </div>
         </div>
@@ -1288,9 +1197,6 @@ const InventoryPage = () => {
                   Stok
                 </th>
                 <th className="text-left py-4 px-6 text-gray-700 dark:text-gray-300 font-semibold">
-                  Min. Stok
-                </th>
-                <th className="text-left py-4 px-6 text-gray-700 dark:text-gray-300 font-semibold">
                   Harga
                 </th>
                 <th className="text-left py-4 px-6 text-gray-700 dark:text-gray-300 font-semibold">
@@ -1303,7 +1209,7 @@ const InventoryPage = () => {
             </thead>
             <tbody>
               {filteredInventory.map((item, index) => {
-                const stockStatus = getStockStatus(item.stock, item.minStock);
+                const stockStatus = getStockStatus(item.stock);
                 return (
                   <motion.tr
                     key={item.id}
@@ -1334,9 +1240,6 @@ const InventoryPage = () => {
                       <span className="font-semibold text-gray-900 dark:text-white">
                         {item.stock}
                       </span>
-                    </td>
-                    <td className="py-4 px-6 text-gray-600 dark:text-gray-400">
-                      {item.minStock}
                     </td>
                     <td className="py-4 px-6 font-semibold text-gray-900 dark:text-white">
                       Rp {item.price.toLocaleString("id-ID")}
