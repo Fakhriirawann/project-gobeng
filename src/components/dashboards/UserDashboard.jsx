@@ -1,7 +1,9 @@
 "use client";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import { useState, useContext, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { AuthContext } from "../../context/AuthContext";
 import {
   FaHome,
   FaCalendarAlt,
@@ -33,12 +35,7 @@ import {
 const UserDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState("dashboard");
-  const [user] = useState({
-    name: "Ahmad Rizki",
-    email: "ahmad.rizki@email.com",
-    phone: "081234567890",
-    avatar: null,
-  });
+  const { user } = useContext(AuthContext);
 
   const sidebarItems = [
     { name: "Dashboard", key: "dashboard", icon: <FaHome /> },
@@ -103,7 +100,7 @@ const UserDashboard = () => {
             </div>
             <div>
               <p className="font-semibold text-gray-900">{user.name}</p>
-              <p className="text-sm text-gray-500">Pelanggan Premium</p>
+              <p className="text-sm text-gray-500">Pelanggan</p>
             </div>
           </div>
         </div>
@@ -1687,12 +1684,14 @@ const ReviewsPage = () => {
 // Profile Page Component
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState("profile");
+  const { user } = useContext(AuthContext);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
   const [profile, setProfile] = useState({
-    name: "Ahmad Rizki",
-    email: "ahmad.rizki@email.com",
-    phone: "081234567890",
-    address: "Jl. Sudirman No. 123, Jakarta Pusat",
-    birthDate: "1990-05-15",
+    name: "",
+    email: "",
+    phone: "",
+    birthDate: "",
+    address: "",
   });
 
   const [vehicles, setVehicles] = useState([
@@ -1733,8 +1732,37 @@ const ProfilePage = () => {
 
   const [showAddVehicle, setShowAddVehicle] = useState(false);
 
-  const handleUpdateProfile = () => {
-    alert("Profil berhasil diperbarui!");
+  useEffect(() => {
+    if (user) {
+      setProfile({
+        name: user.name || "",
+        email: user.email || "",
+        phone: user.phone || "",
+        birthDate: user.birthDate || "",
+        address: user.address || "",
+      });
+    }
+  }, [user]);
+
+  const handleUpdateUser = async () => {
+    const db = getFirestore();
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      alert("User ID tidak ditemukan.");
+      return;
+    }
+
+    try {
+      const userRef = doc(db, "users", userId);
+      console.log("Mencoba update profil:", profile); // log data
+      await updateDoc(userRef, profile);
+      setUpdateSuccess(true);
+      setTimeout(() => setUpdateSuccess(false), 3000);
+    } catch (error) {
+      console.error("Gagal memperbarui profil:", error.message);
+      alert(`Terjadi kesalahan: ${error.message}`);
+    }
   };
 
   const handleAddVehicle = () => {
@@ -1812,110 +1840,110 @@ const ProfilePage = () => {
         </div>
       </div>
 
+      {/* Profile Tab */}
       {activeTab === "profile" && (
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">
-            Informasi Profil
-          </h3>
-
-          {/* Profile Photo */}
-          <div className="flex items-center space-x-6 mb-8">
-            <div className="w-24 h-24 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-3xl font-bold">
-                {profile.name.charAt(0)}
-              </span>
+        <div className="space-y-6">
+          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+            <div className="flex items-start space-x-6 mb-6">
+              <div className="w-24 h-24 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full flex items-center justify-center">
+                <span className="text-white text-3xl font-bold">
+                  {profile.name.charAt(0)}
+                </span>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">
+                  {profile.name}
+                </h3>
+                <p className="text-gray-600">Pelanggan Premium</p>
+                <button className="mt-2 text-orange-400 hover:text-orange-500 font-medium text-sm">
+                  Ubah Foto Profil
+                </button>
+              </div>
             </div>
-            <div>
-              <h4 className="text-lg font-semibold text-gray-900">
-                {profile.name}
-              </h4>
-              <p className="text-gray-600">Pelanggan Premium</p>
-              <button className="mt-2 text-orange-400 hover:text-orange-500 font-medium text-sm">
-                Ubah Foto Profil
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Nama Lengkap
+                </label>
+                <input
+                  type="text"
+                  value={profile.name}
+                  onChange={(e) =>
+                    setProfile({ ...profile, name: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  value={profile.email}
+                  onChange={(e) =>
+                    setProfile({ ...profile, email: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  No. Telepon
+                </label>
+                <input
+                  type="tel"
+                  value={profile.phone}
+                  onChange={(e) =>
+                    setProfile({ ...profile, phone: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Tanggal Lahir
+                </label>
+                <input
+                  type="date"
+                  value={profile.birthDate}
+                  onChange={(e) =>
+                    setProfile({ ...profile, birthDate: e.target.value })
+                  }
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Alamat
+                </label>
+                <textarea
+                  value={profile.address}
+                  onChange={(e) =>
+                    setProfile({ ...profile, address: e.target.value })
+                  }
+                  rows={3}
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200 resize-none"
+                />
+              </div>
+            </div>
+            <div className="mt-8 flex justify-end">
+            {updateSuccess && (
+              <div className="mb-4 text-green-700 bg-green-100 border border-green-300 px-4 py-3 rounded-lg text-sm">
+                Profil berhasil diperbarui!
+              </div>
+            )}
+              <button
+                onClick={handleUpdateUser}
+                className="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-6 py-3 rounded-xl hover:from-orange-500 hover:to-orange-600 transition-all duration-200 font-semibold"
+              >
+                Simpan Perubahan
               </button>
             </div>
           </div>
-
-          {/* Profile Form */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Nama Lengkap
-              </label>
-              <input
-                type="text"
-                value={profile.name}
-                onChange={(e) =>
-                  setProfile({ ...profile, name: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                value={profile.email}
-                onChange={(e) =>
-                  setProfile({ ...profile, email: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                No. Telepon
-              </label>
-              <input
-                type="tel"
-                value={profile.phone}
-                onChange={(e) =>
-                  setProfile({ ...profile, phone: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Tanggal Lahir
-              </label>
-              <input
-                type="date"
-                value={profile.birthDate}
-                onChange={(e) =>
-                  setProfile({ ...profile, birthDate: e.target.value })
-                }
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Alamat
-              </label>
-              <textarea
-                value={profile.address}
-                onChange={(e) =>
-                  setProfile({ ...profile, address: e.target.value })
-                }
-                rows={3}
-                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-orange-400 focus:border-transparent transition-all duration-200 resize-none"
-              />
-            </div>
-          </div>
-
-          <div className="mt-8">
-            <button
-              onClick={handleUpdateProfile}
-              className="bg-gradient-to-r from-orange-400 to-orange-500 text-white px-8 py-3 rounded-xl hover:from-orange-500 hover:to-orange-600 transition-all duration-200 font-semibold"
-            >
-              Simpan Perubahan
-            </button>
-          </div>
         </div>
       )}
-
       {activeTab === "vehicles" && (
         <div className="space-y-6">
           {/* Add Vehicle Button */}
