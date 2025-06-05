@@ -55,10 +55,10 @@ const Login = () => {
         demoCredentials = { email: "ridho@gobeng.com", password: "kasir123" };
         break;
       case "admin":
-        demoCredentials = { email: "admin@gobeng.com", password: "admin123" };
+        demoCredentials = { email: "fakhri@gobeng.com", password: "fakhri123" };
         break;
       case "user":
-        demoCredentials = { email: "user@gobeng.com", password: "user123" };
+        demoCredentials = { email: "rio@gobeng.com", password: "rio123" };
         break;
       default:
         return;
@@ -126,13 +126,13 @@ const Login = () => {
                 onClick={() => handleDemoLogin("admin")}
                 className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
-                Admin: admin@gobeng.com / admin123
+                Admin: fakhri@gobeng.com / fakhri123
               </button>
               <button
                 onClick={() => handleDemoLogin("user")}
                 className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
-                User: user@gobeng.com / user123
+                User: rio@gobeng.com / rio123
               </button>
             </div>
           </div>
