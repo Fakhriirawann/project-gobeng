@@ -48,14 +48,25 @@ export const AuthProvider = ({ children }) => {
       }
 
       // ✅ Update lastLogin ke Firestore
+      const now = new Date().toISOString();
       const userDoc = doc(db, "users", docRef.id);
       await updateDoc(userDoc, {
-        lastLogin: new Date().toISOString(),
+        lastLogin: now,
       });
 
-      const finalUser = { id: docRef.id, ...userData };
+      const finalUser = {
+        id: docRef.id,
+        ...userData,
+        lastLogin: now,
+      };
 
       localStorage.setItem("gobeng_user", JSON.stringify(finalUser));
+      if (finalUser.role !== "user") {
+        localStorage.setItem(
+          "gobeng_mitraId",
+          finalUser.mitraId || finalUser.id
+        );
+      }
       setUser(finalUser);
 
       toast.success(`Selamat datang, ${userData.name || "pengguna"}!`);
@@ -83,7 +94,20 @@ export const AuthProvider = ({ children }) => {
         throw new Error("Email sudah digunakan");
       }
 
-      const newUserRef = await addDoc(collection(db, "users"), userData);
+      if (!userData.mitraId && userData.role !== "user") {
+        const mitraId = localStorage.getItem("gobeng_mitraId");
+        if (mitraId) {
+          userData.mitraId = mitraId;
+        }
+      }
+
+      const now = new Date().toISOString();
+
+      const newUserRef = await addDoc(collection(db, "users"), {
+        ...userData,
+        createdAt: now,
+      });
+
       toast.success("Registrasi berhasil! Silakan login.");
       return { id: newUserRef.id, ...userData };
     } catch (error) {
@@ -97,6 +121,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     localStorage.removeItem("gobeng_user");
+    localStorage.removeItem("gobeng_mitraId"); // Tambahan penting
     setUser(null);
     toast.info("Anda telah keluar dari sistem");
   };

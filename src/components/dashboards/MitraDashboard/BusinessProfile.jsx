@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   FaMapMarkerAlt,
   FaSave,
@@ -11,35 +11,53 @@ import {
   FaGlobe,
   FaEdit,
 } from "react-icons/fa";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../../FireBase"; // Ganti sesuai path kamu
+import { AuthContext } from "../../../context/AuthContext"; // Ganti sesuai path kamu
 
 const BusinessProfile = () => {
-  const [businessData, setBusinessData] = useState({
-    name: "Bengkel Sejahtera",
-    address: "Jl. Raya Utama No. 123, Jakarta",
-    phone: "021-12345678",
-    email: "info@bengkelsejahtera.com",
-    website: "www.bengkelsejahtera.com",
-    description:
-      "Bengkel terpercaya dengan layanan lengkap untuk semua jenis kendaraan. Kami menyediakan servis berkualitas dengan teknisi berpengalaman.",
-    operationalHours: "Senin - Sabtu: 08:00 - 17:00, Minggu: Tutup",
-    logo: "/placeholder.svg?height=200&width=200",
-    location: {
-      lat: -6.2088,
-      lng: 106.8456,
-    },
-  });
+  const { user } = useContext(AuthContext);
+  const mitraId = user?.mitraId;
 
+  const [businessData, setBusinessData] = useState(null);
+  const [tempBusinessData, setTempBusinessData] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [tempBusinessData, setTempBusinessData] = useState({ ...businessData });
 
-  const handleEditToggle = () => {
+  // Ambil data bisnis dari Firestore
+  useEffect(() => {
+    const fetchBusinessData = async () => {
+      if (!mitraId) return;
+      try {
+        const ref = doc(db, "mitras", mitraId);
+        const snap = await getDoc(ref);
+
+        if (snap.exists()) {
+          const data = snap.data();
+          setBusinessData(data);
+          setTempBusinessData(data);
+        }
+      } catch (error) {
+        console.error("Gagal mengambil data bisnis:", error);
+      }
+    };
+
+    fetchBusinessData();
+  }, [mitraId]);
+
+  const handleEditToggle = async () => {
     if (isEditing) {
-      // Save changes
-      setBusinessData(tempBusinessData);
+      try {
+        const ref = doc(db, "mitras", mitraId);
+        await updateDoc(ref, tempBusinessData);
+        setBusinessData(tempBusinessData);
+      } catch (error) {
+        console.error("Gagal menyimpan perubahan:", error);
+        alert("Gagal menyimpan perubahan");
+      }
     } else {
-      // Start editing
       setTempBusinessData({ ...businessData });
     }
+
     setIsEditing(!isEditing);
   };
 
@@ -56,14 +74,23 @@ const BusinessProfile = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
+        const base64String = e.target.result;
         setTempBusinessData((prev) => ({
           ...prev,
-          logo: e.target.result,
+          photo: base64String,
         }));
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // otomatis menyertakan tipe MIME di depan
     }
   };
+
+  if (!businessData) {
+    return (
+      <div className="text-center py-20 text-gray-500 dark:text-gray-400">
+        Memuat profil bisnis...
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -108,7 +135,9 @@ const BusinessProfile = () => {
           <div className="flex flex-col items-center">
             <div className="relative mb-6">
               <img
-                src={isEditing ? tempBusinessData.logo : businessData.logo}
+                src={`data:image/jpeg;base64,${
+                  isEditing ? tempBusinessData?.photo : businessData?.photo
+                }`}
                 alt="Logo Bengkel"
                 className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-orange-100 dark:border-orange-900"
               />
@@ -139,7 +168,7 @@ const BusinessProfile = () => {
                     <input
                       type="text"
                       name="name"
-                      value={tempBusinessData.name}
+                      value={tempBusinessData.bengkelName}
                       onChange={handleInputChange}
                       className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     />
@@ -184,7 +213,7 @@ const BusinessProfile = () => {
               ) : (
                 <div className="space-y-4">
                   <h3 className="text-lg sm:text-xl font-bold text-center text-gray-900 dark:text-white">
-                    {businessData.name}
+                    {businessData.bengkelName}
                   </h3>
                   <div className="flex items-center space-x-2 text-gray-600 dark:text-gray-400">
                     <FaPhone className="text-orange-600 dark:text-orange-400 flex-shrink-0" />
@@ -289,106 +318,26 @@ const BusinessProfile = () => {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
               Lokasi Bengkel
             </h3>
-            {isEditing && (
-              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                <span className="italic">
-                  Drag marker untuk mengubah lokasi
-                </span>
-              </div>
+            {isEditing && tempBusinessData.locationEmbed && (
+              <input
+                label="Embed Lokasi (iframe)"
+                name="locationEmbed"
+                value={tempBusinessData.locationEmbed}
+                onChange={handleInputChange}
+              />
             )}
           </div>
 
           <div className="w-full h-48 sm:h-64 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-700 flex items-center justify-center">
             <div className="text-center">
-              <FaMapMarkerAlt className="text-3xl sm:text-4xl text-gray-400 dark:text-gray-500 mx-auto mb-2" />
-              <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">
-                Peta Lokasi Bengkel
-              </p>
-              <p className="text-xs sm:text-sm text-gray-400 dark:text-gray-500">
-                Google Maps akan ditampilkan di sini
-              </p>
+              <div
+                className="rounded-xl overflow-hidden border mt-4"
+                dangerouslySetInnerHTML={{
+                  __html: businessData.locationEmbed,
+                }}
+              />
             </div>
           </div>
-
-          {isEditing && (
-            <div className="mt-4 space-y-2">
-              <div className="grid grid-cols-2 gap-2">
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Latitude
-                  </label>
-                  <input
-                    type="text"
-                    name="lat"
-                    value={tempBusinessData.location.lat}
-                    onChange={(e) =>
-                      setTempBusinessData((prev) => ({
-                        ...prev,
-                        location: {
-                          ...prev.location,
-                          lat: Number.parseFloat(e.target.value),
-                        },
-                      }))
-                    }
-                    className="w-full px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Longitude
-                  </label>
-                  <input
-                    type="text"
-                    name="lng"
-                    value={tempBusinessData.location.lng}
-                    onChange={(e) =>
-                      setTempBusinessData((prev) => ({
-                        ...prev,
-                        location: {
-                          ...prev.location,
-                          lng: Number.parseFloat(e.target.value),
-                        },
-                      }))
-                    }
-                    className="w-full px-3 py-1 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                  />
-                </div>
-              </div>
-              <button
-                onClick={() => {
-                  if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition((position) => {
-                      const currentLocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude,
-                      };
-
-                      setTempBusinessData((prev) => ({
-                        ...prev,
-                        location: currentLocation,
-                      }));
-                    });
-                  }
-                }}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm flex items-center justify-center space-x-2"
-              >
-                <FaMapMarkerAlt />
-                <span>Gunakan Lokasi Saat Ini</span>
-              </button>
-            </div>
-          )}
-
-          {!isEditing && (
-            <div className="mt-4">
-              <div className="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
-                <span>Koordinat:</span>
-                <span className="font-mono text-xs sm:text-sm">
-                  {businessData.location.lat.toFixed(6)},{" "}
-                  {businessData.location.lng.toFixed(6)}
-                </span>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

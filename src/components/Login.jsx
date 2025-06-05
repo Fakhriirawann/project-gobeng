@@ -49,10 +49,10 @@ const Login = () => {
 
     switch (role) {
       case "mitra":
-        demoCredentials = { email: "mitra@gobeng.com", password: "mitra123" };
+        demoCredentials = { email: "bmp@gobeng.com", password: "bmp123" };
         break;
       case "kasir":
-        demoCredentials = { email: "kasir@gobeng.com", password: "kasir123" };
+        demoCredentials = { email: "ridho@gobeng.com", password: "kasir123" };
         break;
       case "admin":
         demoCredentials = { email: "admin@gobeng.com", password: "admin123" };
@@ -114,13 +114,13 @@ const Login = () => {
                 onClick={() => handleDemoLogin("mitra")}
                 className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
-                Mitra: mitra@gobeng.com / mitra123
+                Mitra: bmp@gobeng.com / bmp123
               </button>
               <button
                 onClick={() => handleDemoLogin("kasir")}
                 className="w-full text-left px-3 py-1.5 rounded-md hover:bg-orange-100 dark:hover:bg-orange-800/50 transition-colors"
               >
-                Kasir: kasir@gobeng.com / kasir123
+                Kasir: ridho@gobeng.com / kasir123
               </button>
               <button
                 onClick={() => handleDemoLogin("admin")}

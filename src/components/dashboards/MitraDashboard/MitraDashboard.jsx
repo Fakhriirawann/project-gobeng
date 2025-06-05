@@ -1,6 +1,10 @@
 "use client";
+
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../../FireBase";
+import { AuthContext } from "../../../context/AuthContext";
+import { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaHome,
@@ -27,7 +31,30 @@ import MultiUserManagement from "./MultiUserManagement";
 const MitraDashboard = () => {
   const [currentPage, setCurrentPage] = useState("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const user = { name: "Mitra Bengkel" }; // Mock user data
+  const { user } = useContext(AuthContext);
+  const mitraId = user?.mitraId;
+  const [mitraName, setMitraName] = useState("Mitra");
+  const [bengkelName, setBengkelName] = useState("Bengkel");
+
+  // Ambil nama mitra dari Firestore
+  useEffect(() => {
+    const fetchMitraName = async () => {
+      if (!mitraId) return;
+      try {
+        const ref = doc(db, "mitras", mitraId);
+        const snap = await getDoc(ref);
+        if (snap.exists()) {
+          const data = snap.data();
+          setMitraName(data.name || "Mitra");
+          setBengkelName(data.bengkelName || "Bengkel");
+        }
+      } catch (err) {
+        console.error("Gagal ambil nama mitra:", err);
+      }
+    };
+
+    fetchMitraName();
+  }, [mitraId]);
 
   const sidebarItems = [
     { name: "Overview", id: "overview", icon: <FaHome /> },
@@ -78,7 +105,7 @@ const MitraDashboard = () => {
                 className="w-32 h-32 object-contain"
               />
             </div>
-            <div className="">
+            <div>
               <span className="text-white text-2xl font-bold">GoBeng</span>
               <p className="text-orange-100 text-sm">Mitra Panel</p>
             </div>
@@ -100,10 +127,10 @@ const MitraDashboard = () => {
             </div>
             <div>
               <p className="font-semibold text-gray-900 dark:text-white">
-                {user?.name || "Mitra"}
+                {mitraName}
               </p>
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                Pemilik Bengkel
+                Owner {bengkelName}
               </p>
             </div>
           </div>
