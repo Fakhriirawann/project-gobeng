@@ -135,8 +135,12 @@ const Register = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <div className="w-20 h-20 bg-orange-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <span className="text-white font-bold text-2xl">GB</span>
+                 <div className="w-24 h-24 flex items-center justify-center mx-auto overflow-hidden">
+                <img
+                  src="/icon.png" // ganti dengan path gambar kamu
+                  alt="Logo GoBeng"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
             <h1 className="text-3xl font-bold text-orange-400 dark:text-orange-400 mb-2">
@@ -160,7 +164,7 @@ const Register = () => {
                 >
                   1
                 </div>
-                <span className="text-xs mt-1">Data Diri</span>
+                <span className="text-xs mt-1 text-gray-300">Data Diri</span>
               </div>
               <div
                 className={`flex-1 h-1 mx-2 ${
@@ -177,7 +181,7 @@ const Register = () => {
                 >
                   2
                 </div>
-                <span className="text-xs mt-1">Keamanan</span>
+                <span className="text-xs mt-1 text-gray-300">Keamanan</span>
               </div>
             </div>
           </div>
